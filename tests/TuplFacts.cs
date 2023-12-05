@@ -86,5 +86,20 @@ public class TuplFacts
       Assert.Equivalent(expectedPoint, resultPoint);
       Assert.Equal(expectedW, resultPoint.w);
     }
+
+    [Fact]
+    public void PointsSubReturnsVector()
+    {
+      float expectedW = 0f;
+
+      Vector expectedVector = new(1, 0, 5);
+      Point pointA = new(0, 2, 8);
+      Point pointB = new(-1, 2, 3);
+
+      Vector resultVector = pointA - pointB;
+
+      Assert.Equivalent(expectedVector, resultVector);
+      Assert.Equal(expectedW, resultVector.w);
+    }
   }
 }
