@@ -20,5 +20,16 @@ public class Vector : Tupl
 
     return vectorSum;
   }
+
+  public static Vector operator -(Vector a, Vector b)
+  {
+    Vector vectorSub = new(
+        a.x - b.x,
+        a.y - b.y,
+        a.z - b.z,
+        a.w - b.w);
+
+    return vectorSub;
+  }
 }
 
