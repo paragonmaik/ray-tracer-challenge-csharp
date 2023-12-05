@@ -11,7 +11,7 @@ public class TuplFacts
       float expectedW = 0f;
 
       //When
-      Vector vector = new Vector();
+      Vector vector = new();
 
       //Then
       Assert.Equal(expectedW, vector.w);
@@ -27,7 +27,7 @@ public class TuplFacts
       float expectedW = 1f;
 
       //When
-      Point point = new Point();
+      Point point = new();
 
       //Then
       Assert.Equal(expectedW, point.w);
