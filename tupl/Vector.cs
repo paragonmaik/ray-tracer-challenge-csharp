@@ -9,5 +9,16 @@ public class Vector : Tupl
   {
     this.w = 0f;
   }
+
+  public static Vector operator +(Vector a, Vector b)
+  {
+    Vector vectorSum = new(
+        a.x + b.x,
+        a.y + b.y,
+        a.z + b.z,
+        a.w + b.w);
+
+    return vectorSum;
+  }
 }
 
