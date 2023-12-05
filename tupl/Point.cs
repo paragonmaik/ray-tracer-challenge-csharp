@@ -9,5 +9,16 @@ public class Point : Tupl
   {
     this.w = 1f;
   }
+
+  public static Point operator +(Point a, Vector b)
+  {
+    Point pointSum = new(
+        a.x + b.x,
+        a.y + b.y,
+        a.z + b.z,
+        a.w + b.w);
+
+    return pointSum;
+  }
 }
 
