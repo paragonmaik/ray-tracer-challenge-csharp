@@ -4,8 +4,10 @@ public class Point : Tupl
   {
   }
 
-  public Point(float x = 0f, float y = 0f, float z = 0f, float w = 1f) : base(x, y, z, w)
+  public Point(float x = 0f, float y = 0f,
+      float z = 0f, float w = 1f) : base(x, y, z, w)
   {
+    this.w = 1f;
   }
 }
 
