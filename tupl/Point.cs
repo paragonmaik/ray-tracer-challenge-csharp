@@ -42,5 +42,14 @@ public class Point : Tupl
 
     return pointSub;
   }
+
+  public static Point operator !(Point a)
+  {
+    return new Point(
+        a.x * -1,
+        a.y * -1,
+        a.z * -1,
+        a.w);
+  }
 }
 
