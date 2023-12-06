@@ -43,6 +43,16 @@ public class TuplFacts
       Assert.Equivalent(expectedVector, resultVector);
       Assert.Equal(expectedW, resultVector.w);
     }
+
+    [Fact]
+    public void NegateVectors()
+    {
+      Vector expectedVector = new(3, -2, 5);
+
+      Vector vector = new(-3, 2, -5);
+
+      Assert.Equivalent(expectedVector, !vector);
+    }
   }
 
   public class Points
@@ -100,6 +110,16 @@ public class TuplFacts
 
       Assert.Equivalent(expectedVector, resultVector);
       Assert.Equal(expectedW, resultVector.w);
+    }
+
+    [Fact]
+    public void NegatePoints()
+    {
+      Point expectedPoint = new(5, -1, 2);
+
+      Point point = new(-5, 1, -2);
+
+      Assert.Equivalent(expectedPoint, !point);
     }
   }
 }
