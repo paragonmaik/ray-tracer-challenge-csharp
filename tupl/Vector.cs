@@ -38,7 +38,7 @@ public class Vector : Tupl
         a.x * -1,
         a.y * -1,
         a.z * -1,
-        a.w);
+        a.w * -1);
   }
 }
 
