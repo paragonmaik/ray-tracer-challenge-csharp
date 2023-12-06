@@ -113,6 +113,18 @@ public class TuplFacts
     }
 
     [Fact]
+    public void MultiplyPoint()
+    {
+      float scale = 3.5f;
+      Point expectedPoint = new(7, 10.5f, 3.5f);
+      Point point = new(2, 3, 1);
+
+      Point multipliedPoint = point * scale;
+
+      Assert.Equivalent(expectedPoint, multipliedPoint);
+    }
+
+    [Fact]
     public void NegatePoints()
     {
       Point expectedPoint = new(5, -1, 2);
