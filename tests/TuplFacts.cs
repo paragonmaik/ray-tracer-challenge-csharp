@@ -45,6 +45,18 @@ public class TuplFacts
     }
 
     [Fact]
+    public void MultiplyVector()
+    {
+      float scale = 3.5f;
+      Vector expectedVector = new(7, 10.5f, 3.5f);
+      Vector vector = new(2, 3, 1);
+
+      Vector multipliedVector = vector * scale;
+
+      Assert.Equivalent(expectedVector, multipliedVector);
+    }
+
+    [Fact]
     public void NegateVectors()
     {
       Vector expectedVector = new(3, -2, 5);
