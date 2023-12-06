@@ -31,5 +31,14 @@ public class Vector : Tupl
 
     return vectorSub;
   }
+
+  public static Vector operator !(Vector a)
+  {
+    return new Vector(
+        a.x * -1,
+        a.y * -1,
+        a.z * -1,
+        a.w);
+  }
 }
 
