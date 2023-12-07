@@ -77,6 +77,16 @@ public class TuplFacts
 
       Assert.Equivalent(expectedVector, !vector);
     }
+
+    [Fact]
+    public void CalculateVectorMagnitude()
+    {
+      Vector expectedVector = new(1, 2, 3);
+
+      double vectorMagnitude = expectedVector.Magnitude();
+
+      Assert.Equal(vectorMagnitude, Math.Sqrt(14));
+    }
   }
 
   public class Points
