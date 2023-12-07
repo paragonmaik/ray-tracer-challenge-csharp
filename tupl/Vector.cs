@@ -58,5 +58,15 @@ public class Vector : Tupl
         a.z * -1,
         a.w * -1);
   }
+
+  public Vector Normalize()
+  {
+    this.x = this.x / (float)Magnitude();
+    this.y = this.y / (float)Magnitude();
+    this.z = this.z / (float)Magnitude();
+    this.w = this.w / (float)Magnitude();
+
+    return this;
+  }
 }
 

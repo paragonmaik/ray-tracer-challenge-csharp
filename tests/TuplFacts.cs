@@ -87,6 +87,17 @@ public class TuplFacts
 
       Assert.Equal(vectorMagnitude, Math.Sqrt(14));
     }
+
+    [Fact]
+    public void NormalizeVector()
+    {
+      Vector expectedVector = new(1, 0, 0);
+      Vector vector = new(5, 0, 0);
+
+      Vector normalizedVector = vector.Normalize();
+
+      Assert.Equivalent(expectedVector, normalizedVector);
+    }
   }
 
   public class Points
