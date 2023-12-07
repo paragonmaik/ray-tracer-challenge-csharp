@@ -57,6 +57,18 @@ public class TuplFacts
     }
 
     [Fact]
+    public void DivideVector()
+    {
+      float scale = 2f;
+      Vector expectedVector = new(1, 1.5f, .5f);
+      Vector vector = new(2, 3, 1);
+
+      Vector dividedVector = vector / scale;
+
+      Assert.Equivalent(expectedVector, dividedVector);
+    }
+
+    [Fact]
     public void NegateVectors()
     {
       Vector expectedVector = new(3, -2, 5);
@@ -134,6 +146,18 @@ public class TuplFacts
       Point multipliedPoint = point * scale;
 
       Assert.Equivalent(expectedPoint, multipliedPoint);
+    }
+
+    [Fact]
+    public void DividePoint()
+    {
+      float scale = 2f;
+      Point expectedPoint = new(1, 1.5f, .5f);
+      Point point = new(2, 3, 1);
+
+      Point dividedPoint = point / scale;
+
+      Assert.Equivalent(expectedPoint, dividedPoint);
     }
 
     [Fact]
