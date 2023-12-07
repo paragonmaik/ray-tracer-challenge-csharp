@@ -41,6 +41,15 @@ public class Vector : Tupl
     a.w * b);
   }
 
+  public static Vector operator /(Vector a, float b)
+  {
+    return new Vector(
+    a.x / b,
+    a.y / b,
+    a.z / b,
+    a.w / b);
+  }
+
   public static Vector operator !(Vector a)
   {
     return new Vector(

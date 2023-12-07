@@ -52,6 +52,15 @@ public class Point : Tupl
     a.w * b);
   }
 
+  public static Point operator /(Point a, float b)
+  {
+    return new Point(
+    a.x / b,
+    a.y / b,
+    a.z / b,
+    a.w / b);
+  }
+
   public static Point operator !(Point a)
   {
     return new Point(
