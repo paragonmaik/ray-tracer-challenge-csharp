@@ -12,5 +12,13 @@ public abstract class Tupl
     this.z = z;
     this.w = w;
   }
+
+  public double Magnitude()
+  {
+    double mag = Math.Sqrt(this.x * this.x +
+        this.y * this.y + this.z * this.z);
+
+    return (double)mag;
+  }
 }
 
