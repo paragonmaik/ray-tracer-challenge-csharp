@@ -20,5 +20,13 @@ public abstract class Tupl
 
     return (double)mag;
   }
+
+  public double Dot(Tupl a, Tupl b)
+  {
+    return a.x * b.x +
+      a.y * b.y +
+      a.z * b.z +
+      a.w * b.w;
+  }
 }
 
