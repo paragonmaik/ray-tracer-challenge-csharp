@@ -89,6 +89,18 @@ public class TuplFacts
     }
 
     [Fact]
+    public void CalculateVectorsDotProduct()
+    {
+      double expectedDotProduct = 13f;
+      Vector vectorA = new(2, 2, 1);
+      Vector vectorB = new(2, 4, 1);
+
+      double dotProduct = vectorA.Dot(vectorA, vectorB);
+
+      Assert.Equivalent(expectedDotProduct, dotProduct);
+    }
+
+    [Fact]
     public void NormalizeVector()
     {
       Vector expectedVector = new(1, 0, 0);
