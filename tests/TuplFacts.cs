@@ -101,6 +101,18 @@ public class TuplFacts
     }
 
     [Fact]
+    public void CalculateVectorCrossProduct()
+    {
+      Vector expectedVector = new(-2, 0, 4);
+      Vector vectorA = new(2, 2, 1);
+      Vector vectorB = new(2, 4, 1);
+
+      Vector crossProduct = vectorA.Cross(vectorB);
+
+      Assert.Equivalent(expectedVector, crossProduct);
+    }
+
+    [Fact]
     public void NormalizeVector()
     {
       Vector expectedVector = new(1, 0, 0);
