@@ -1,7 +1,7 @@
 public class Projectile
 {
-  Point position;
-  Vector velocity;
+  public Point position;
+  public Vector velocity;
 
   Projectile(Point position, Vector velocity)
   {

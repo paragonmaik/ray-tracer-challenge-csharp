@@ -1,7 +1,7 @@
 public class Environment
 {
-  Vector gravity;
-  Vector wind;
+  public Vector gravity;
+  public Vector wind;
 
   Environment(Vector gravity, Vector wind)
   {
