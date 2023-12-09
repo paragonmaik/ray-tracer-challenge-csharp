@@ -1,2 +1,8 @@
-﻿Console.WriteLine("Hello, Sailor!");
+﻿
+public class Program
+{
+  public void Tick()
+  {
 
+  }
+}
