@@ -95,7 +95,7 @@ public class TuplFacts
       Vector vectorA = new(2, 2, 1);
       Vector vectorB = new(2, 4, 1);
 
-      double dotProduct = vectorA.Dot(vectorA, vectorB);
+      double dotProduct = vectorA.Dot(vectorB);
 
       Assert.Equivalent(expectedDotProduct, dotProduct);
     }
