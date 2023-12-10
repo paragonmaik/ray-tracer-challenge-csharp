@@ -215,4 +215,21 @@ public class TuplFacts
       Assert.Equivalent(expectedPoint, !point);
     }
   }
+
+  public class Colors
+  {
+    [Fact]
+    public void ValidateColorInstantiation()
+    {
+      float red = 0.2f;
+      float green = 1f;
+      float blue = 0.7f;
+
+      Color color = new(0.2f, 1, 0.7f);
+
+      Assert.Equal(red, color.red);
+      Assert.Equal(green, color.green);
+      Assert.Equal(blue, color.blue);
+    }
+  }
 }
