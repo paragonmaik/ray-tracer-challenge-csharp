@@ -231,5 +231,42 @@ public class TuplFacts
       Assert.Equal(green, color.green);
       Assert.Equal(blue, color.blue);
     }
+
+    [Fact]
+    public void AddColors()
+    {
+      Color expectedColor = new(2, 3, 5);
+      Color colorA = new(0.1f, 1, 0.3f);
+      Color colorB = new(0.4f, 0, 0.4f);
+
+      Color resultColor = colorA + colorB;
+
+      Assert.Equivalent(expectedColor, resultColor);
+    }
+
+    [Fact]
+    public void SubtractColors()
+    {
+      Color expectedColor = new(2, 3, 5);
+      Color colorA = new(0.1f, 1, 0.3f);
+      Color colorB = new(0.4f, 0, 0.4f);
+
+      Color resultColor = colorA - colorB;
+
+      Assert.Equivalent(expectedColor, resultColor);
+    }
+
+    [Fact]
+    public void MultiplyColorByScalar()
+    {
+
+      Color expectedColor = new(2, 3, 5);
+      Color colorA = new(0.1f, 1, 0.3f);
+      Color colorB = new(0.4f, 0, 0.4f);
+
+      Color resultColor = colorA * colorB;
+
+      Assert.Equivalent(expectedColor, resultColor);
+    }
   }
 }
