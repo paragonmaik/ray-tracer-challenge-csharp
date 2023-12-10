@@ -235,9 +235,9 @@ public class TuplFacts
     [Fact]
     public void AddColors()
     {
-      Color expectedColor = new(2, 3, 5);
-      Color colorA = new(0.1f, 1, 0.3f);
-      Color colorB = new(0.4f, 0, 0.4f);
+      Color expectedColor = new(0.5f, 1, 0.2f);
+      Color colorA = new(0.1f, 1, 0.1f);
+      Color colorB = new(0.4f, 0, 0.1f);
 
       Color resultColor = colorA + colorB;
 
@@ -247,9 +247,9 @@ public class TuplFacts
     [Fact]
     public void SubtractColors()
     {
-      Color expectedColor = new(2, 3, 5);
-      Color colorA = new(0.1f, 1, 0.3f);
-      Color colorB = new(0.4f, 0, 0.4f);
+      Color expectedColor = new(-0.3f, 1, 0);
+      Color colorA = new(0.1f, 1, 0.2f);
+      Color colorB = new(0.4f, 0, 0.2f);
 
       Color resultColor = colorA - colorB;
 
@@ -260,11 +260,11 @@ public class TuplFacts
     public void MultiplyColorByScalar()
     {
 
-      Color expectedColor = new(2, 3, 5);
+      Color expectedColor = new(0.2f, 2, 0.6f);
       Color colorA = new(0.1f, 1, 0.3f);
-      Color colorB = new(0.4f, 0, 0.4f);
+      float scalar = 2f;
 
-      Color resultColor = colorA * colorB;
+      Color resultColor = colorA * scalar;
 
       Assert.Equivalent(expectedColor, resultColor);
     }
