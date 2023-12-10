@@ -25,4 +25,13 @@ public class Canvas
       }
     }
   }
+
+  public void SetPixel(int x, int y, Color color)
+  {
+    if (x < 0 && y < 0 && x >= width && y >= height)
+    {
+      return;
+    }
+    canvas[x, y] = color;
+  }
 }
