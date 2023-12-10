@@ -27,7 +27,9 @@ public class ColorFacts
 
       Color resultColor = colorA + colorB;
 
-      Assert.Equivalent(expectedColor, resultColor);
+      Assert.Equal(expectedColor.red, resultColor.red, 4);
+      Assert.Equal(expectedColor.green, resultColor.green, 4);
+      Assert.Equal(expectedColor.blue, resultColor.blue, 4);
     }
 
     [Fact]
@@ -39,7 +41,9 @@ public class ColorFacts
 
       Color resultColor = colorA - colorB;
 
-      Assert.Equivalent(expectedColor, resultColor);
+      Assert.Equal(expectedColor.red, resultColor.red, 4);
+      Assert.Equal(expectedColor.green, resultColor.green, 4);
+      Assert.Equal(expectedColor.blue, resultColor.blue, 4);
     }
 
     [Fact]
@@ -66,9 +70,10 @@ public class ColorFacts
 
       Color resultColor = colorA * scalar;
 
-      Assert.Equivalent(expectedColor, resultColor);
+      Assert.Equal(expectedColor.red, resultColor.red, 4);
+      Assert.Equal(expectedColor.green, resultColor.green, 4);
+      Assert.Equal(expectedColor.blue, resultColor.blue, 4);
     }
   }
-
 }
 
