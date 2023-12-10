@@ -10,7 +10,7 @@ public class CanvasFacts
       int width = 10;
       int height = 10;
 
-      Canvas canvas = new(10, 10);
+      Canvas canvas = new(width, height);
       Color defaultCanvasColor = new();
 
       Assert.Equal(canvas.GetWidth(), width);
