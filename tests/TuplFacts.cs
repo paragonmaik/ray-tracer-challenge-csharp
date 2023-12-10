@@ -257,6 +257,20 @@ public class TuplFacts
     }
 
     [Fact]
+    public void MultiplyColors()
+    {
+      Color expectedColor = new(0.04f, 0, 0.04f);
+      Color colorA = new(0.1f, 1, 0.2f);
+      Color colorB = new(0.4f, 0, 0.2f);
+
+      Color resultColor = colorA * colorB;
+
+      Assert.Equal(expectedColor.red, resultColor.red, 4);
+      Assert.Equal(expectedColor.green, resultColor.green, 4);
+      Assert.Equal(expectedColor.blue, resultColor.blue, 4);
+    }
+
+    [Fact]
     public void MultiplyColorByScalar()
     {
 

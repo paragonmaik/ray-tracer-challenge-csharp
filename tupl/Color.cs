@@ -34,6 +34,16 @@ public class Color
         );
   }
 
+  public static Color operator *(Color a, Color b)
+  {
+    return new(
+        a.red * b.red,
+        a.green * b.green,
+        a.blue * b.blue
+        );
+  }
+
+
   public static Color operator *(Color a, float b)
   {
     return new(
