@@ -19,23 +19,19 @@ public class Canvas
   {
     for (int i = 0; i < width; i++)
     {
-      for (int j = 0; j < width; j++)
+      for (int j = 0; j < height; j++)
       {
         canvas[i, j] = color;
       }
     }
   }
 
-  public void SetPixel(int xAxis, int yAxis, Color color)
+  public void SetPixel(int x, int y, Color color)
   {
-    int x = xAxis - 1;
-    int y = yAxis - 1;
-
-    if (x < 0 && y < 0 && x >= width && y >= height)
+    if (x > 0 && y > 0 && x < width && y < height)
     {
-      return;
+      canvas[x, y] = color;
     }
-    canvas[x, y] = color;
   }
 
   public void Save(string filename)
@@ -59,8 +55,11 @@ public class Canvas
         for (int x = 0; x < height; x++)
         {
           Color currentPixel = canvas[x, y];
-          // string red = currentPixel.red
-          sw.Write($" {currentPixel.red} {currentPixel.green} {currentPixel.blue} ");
+          string red = NormalizeColor(currentPixel.red, 255).ToString();
+          string green = NormalizeColor(currentPixel.green, 255).ToString();
+          string blue = NormalizeColor(currentPixel.blue, 255).ToString();
+
+          sw.Write($" {red} {green} {blue} ");
         }
         sw.Write("\n");
       }
