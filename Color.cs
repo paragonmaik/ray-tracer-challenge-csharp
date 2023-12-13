@@ -43,7 +43,6 @@ public class Color
         );
   }
 
-
   public static Color operator *(Color a, float b)
   {
     return new(
