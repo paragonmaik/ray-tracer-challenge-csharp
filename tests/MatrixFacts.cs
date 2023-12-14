@@ -42,5 +42,95 @@ public class MatrixFacts
       Assert.Equal(mat2.GetSize(), size);
       Assert.Equal(mat2[0, 1], randomVal);
     }
+
+    [Fact]
+    public void Validate4x4MatrixMultiplication()
+    {
+      double[,] arr1 = {
+        { 1, 1, 1, 1 },
+        { 1, 1, 1, 1 },
+        { 1, 1, 1, 1 },
+        { 1, 1, 1, 1 }
+      };
+
+      double[,] arr2 = {
+        { 3, 3, 3, 3 },
+        { 3, 3, 3, 3 },
+        { 3, 3, 3, 3 },
+        { 3, 3, 3, 3 }
+      };
+
+      double[,] arr3 = {
+        { 12, 12, 12, 12 },
+        { 12, 12, 12, 12 },
+        { 12, 12, 12, 12 },
+        { 12, 12, 12, 12 }
+      };
+
+      Matrix matA = new(arr1);
+      Matrix matB = new(arr2);
+      Matrix expectedMatrix = new(arr3);
+
+      Matrix multipliedMat = matA * matB;
+
+      Assert.Equivalent(expectedMatrix[0, 0], multipliedMat[0, 0]);
+    }
+
+    [Fact]
+    public void Validate3x3MatrixMultiplication()
+    {
+      double[,] arr1 = {
+        { 1, 1, 1 },
+        { 1, 1, 1 },
+        { 1, 1, 1 }
+      };
+
+      double[,] arr2 = {
+        { 3, 3, 3 },
+        { 3, 3, 3 },
+        { 3, 3, 3 }
+      };
+
+      double[,] arr3 = {
+        { 9, 9, 9 },
+        { 9, 9, 9 },
+        { 9, 9, 9 }
+      };
+
+      Matrix matA = new(arr1);
+      Matrix matB = new(arr2);
+      Matrix expectedMatrix = new(arr3);
+
+      Matrix multipliedMat = matA * matB;
+
+      Assert.Equivalent(expectedMatrix[0, 0], multipliedMat[0, 0]);
+    }
+
+    [Fact]
+    public void Validate2x2MatrixMultiplication()
+    {
+      double[,] arr1 = {
+        { 1, 1 },
+        { 1, 1 }
+      };
+
+      double[,] arr2 = {
+        { 3, 3 },
+        { 3, 3 }
+      };
+
+      double[,] arr3 = {
+        { 6, 6 },
+        { 6, 6 }
+      };
+
+      Matrix matA = new(arr1);
+      Matrix matB = new(arr2);
+      Matrix expectedMatrix = new(arr3);
+
+      Matrix multipliedMat = matA * matB;
+
+      Assert.Equivalent(expectedMatrix[0, 0], multipliedMat[0, 0]);
+    }
   }
 }
