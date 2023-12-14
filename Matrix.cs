@@ -32,5 +32,25 @@ public class Matrix
     set { values[i, j] = value; }
   }
 
+  public static Matrix operator *(Matrix a, Matrix b)
+  {
+    int size = a.GetSize();
+    Matrix mat = new(size);
+
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        for (int q = 0; q < size; q++)
+        {
+          mat[r, c] += a[r, q] * b[q, r];
+        }
+      }
+    }
+
+
+    return mat;
+  }
+
   // TODO: add ToString method
 }
