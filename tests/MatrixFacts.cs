@@ -132,5 +132,23 @@ public class MatrixFacts
 
       Assert.Equivalent(expectedMatrix[0, 0], multipliedMat[0, 0]);
     }
+
+    [Fact]
+    public void ValidateMatrixMultipliedByTupl()
+    {
+      double[,] arr = {
+      { -1, 4, 3, 5 },
+      { 2, 6, 8, 6 },
+      { 4, 8, 9, 6 },
+      { 9, 5, 8, 7 }
+      };
+      Matrix mat = new(arr);
+      Tupl tupl = new(2, 4, 1, 6);
+      Tupl expected = new(47, 72, 85, 88);
+
+      Tupl res = mat * tupl;
+
+      Assert.Equivalent(expected, res);
+    }
   }
 }
