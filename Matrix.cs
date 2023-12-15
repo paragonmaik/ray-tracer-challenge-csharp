@@ -73,5 +73,24 @@ public class Matrix
         );
   }
 
-  // TODO: add ToString method
+  public Matrix Identity()
+  {
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        if (r == c)
+        {
+          this[r, c] = 1;
+        }
+        else
+        {
+          this[r, c] = 0;
+        }
+      }
+    }
+
+    return this;
+  }
+
 }
