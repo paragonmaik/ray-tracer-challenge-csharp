@@ -1,10 +1,13 @@
-public abstract class Tupl
+public class Tupl
 {
   public float x;
   public float y;
   public float z;
   public float w;
 
+  public Tupl()
+  {
+  }
   public Tupl(float x, float y, float z, float w)
   {
     this.x = x;
