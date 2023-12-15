@@ -43,13 +43,34 @@ public class Matrix
       {
         for (int q = 0; q < size; q++)
         {
-          mat[r, c] += a[r, q] * b[q, r];
+          mat[r, c] += a[r, q] * b[q, c];
         }
       }
     }
 
-
     return mat;
+  }
+
+  public static Tupl operator *(Matrix a, Tupl b)
+  {
+    int size = a.GetSize();
+    double[] temp = new double[size];
+    double[] temp2 = { b.x, b.y, b.z, b.w };
+
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        temp[r] += a[r, c] * temp2[c];
+      }
+    }
+
+    return new Tupl(
+        (float)temp[0],
+        (float)temp[1],
+        (float)temp[2],
+        (float)temp[3]
+        );
   }
 
   // TODO: add ToString method
