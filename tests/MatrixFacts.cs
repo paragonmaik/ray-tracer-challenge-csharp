@@ -150,5 +150,31 @@ public class MatrixFacts
 
       Assert.Equivalent(expected, res);
     }
+
+    [Fact]
+    public void ValidateIdentityMatrix()
+    {
+      double[,] arr = {
+      { -1, 4, 3, 5 },
+      { 2, 6, 8, 6 },
+      { 4, 8, 9, 6 },
+      { 9, 5, 8, 7 }
+      };
+      double[,] identity = {
+      { 1, 0, 0, 0 },
+      { 0, 1, 0, 0 },
+      { 0, 0, 1, 0 },
+      { 0, 0, 0, 1 }
+      };
+      Matrix mat = new(arr);
+      Matrix expectedIdentity = new(identity);
+
+      mat.Identity();
+
+      Assert.Equal(mat[0, 0], expectedIdentity[0, 0]);
+      Assert.Equal(mat[1, 1], expectedIdentity[1, 1]);
+      Assert.Equal(mat[2, 2], expectedIdentity[2, 2]);
+      Assert.Equal(mat[3, 3], expectedIdentity[3, 3]);
+    }
   }
 }
