@@ -93,4 +93,28 @@ public class Matrix
     return this;
   }
 
+  public Matrix Transpose()
+  {
+    Matrix transposedMatrix = new(4);
+
+    for (int c = 0; c < size; c++)
+    {
+      for (int r = 0; r < size; r++)
+      {
+        transposedMatrix[r, c] = this[c, r];
+      }
+    }
+
+    //TODO: refactor by adding a new constructor
+    //that takes a Matrix as arg
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        this[r, c] = transposedMatrix[r, c];
+      }
+    }
+
+    return this;
+  }
 }
