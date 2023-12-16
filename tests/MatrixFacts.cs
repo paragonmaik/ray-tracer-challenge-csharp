@@ -176,5 +176,31 @@ public class MatrixFacts
       Assert.Equal(mat[2, 2], expectedIdentity[2, 2]);
       Assert.Equal(mat[3, 3], expectedIdentity[3, 3]);
     }
+
+    [Fact]
+    public void ValidateTransposeMatrix()
+    {
+      double[,] arr = {
+      { 0, 9, 3, 0 },
+      { 9, 8, 0, 8 },
+      { 1, 8, 5, 3 },
+      { 0, 0, 5, 8 }
+    };
+      double[,] transpose = {
+      { 0, 9, 1, 0 },
+      { 9, 8, 8, 0 },
+      { 3, 0, 5, 4 },
+      { 0, 8, 3, 8 }
+      };
+      Matrix mat = new(arr);
+      Matrix expectedTransposedMatrix = new(transpose);
+
+      mat.Transpose();
+
+      Assert.Equal(mat[0, 0], expectedTransposedMatrix[0, 0]);
+      Assert.Equal(mat[0, 1], expectedTransposedMatrix[0, 1]);
+      Assert.Equal(mat[0, 2], expectedTransposedMatrix[0, 2]);
+      Assert.Equal(mat[0, 3], expectedTransposedMatrix[0, 3]);
+    }
   }
 }
