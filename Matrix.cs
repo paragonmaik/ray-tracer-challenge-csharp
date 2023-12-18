@@ -117,10 +117,12 @@ public class Matrix
   {
     if (this.size == 2)
     {
-      return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
+      return Calculate2x2Det();
     }
     return 0;
   }
+
+  // Private methods
 
   private void ValidateMatrixLength()
   {
