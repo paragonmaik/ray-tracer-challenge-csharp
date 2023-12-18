@@ -217,5 +217,50 @@ public class MatrixFacts
 
       Assert.Equal(expectedDeterminant, matDDeterminant);
     }
+
+    [Fact]
+    public void Validate3x3Submatrix()
+    {
+      double[,] arr1 = {
+      { 1, 5, 0 },
+      { -3, 2, 7 },
+      { 0, 6, -3 }
+      };
+
+      double[,] arr2 = {
+        { -3, 2 },
+        { 0 , 6 }
+      };
+      Matrix expectedSubmatrix = new(arr2);
+
+      Matrix mat = new(arr1);
+      Matrix submatrix = mat.SubMatrix(0, 2);
+
+      Assert.Equal(expectedSubmatrix, submatrix);
+    }
+
+    [Fact]
+    public void Validate4x4Submatrix()
+    {
+      double[,] arr1 = {
+      { -6, 1, 1, 6 },
+      { -8, 5, 8, 6 },
+      { -1, 0, 8, 2 },
+      { -7, 1, -1, 1 }
+      };
+
+      double[,] arr2 = {
+      { -6, 1, 6 },
+      { -8, 8, 6 },
+      { -7, -1, 1 }
+      };
+
+      Matrix expectedSubmatrix = new(arr2);
+
+      Matrix mat = new(arr1);
+      Matrix submatrix = mat.SubMatrix(2, 1);
+
+      Assert.Equal(expectedSubmatrix, submatrix);
+    }
   }
 }
