@@ -73,7 +73,7 @@ public class MatrixFacts
 
       Matrix multipliedMat = matA * matB;
 
-      Assert.Equivalent(expectedMatrix[0, 0], multipliedMat[0, 0]);
+      Assert.Equal(expectedMatrix, multipliedMat);
     }
 
     [Fact]
@@ -103,7 +103,7 @@ public class MatrixFacts
 
       Matrix multipliedMat = matA * matB;
 
-      Assert.Equivalent(expectedMatrix[0, 0], multipliedMat[0, 0]);
+      Assert.Equal(expectedMatrix, multipliedMat);
     }
 
     [Fact]
@@ -130,7 +130,7 @@ public class MatrixFacts
 
       Matrix multipliedMat = matA * matB;
 
-      Assert.Equivalent(expectedMatrix[0, 0], multipliedMat[0, 0]);
+      Assert.Equal(expectedMatrix, multipliedMat);
     }
 
     [Fact]
@@ -171,10 +171,7 @@ public class MatrixFacts
 
       mat.Identity();
 
-      Assert.Equal(mat[0, 0], expectedIdentity[0, 0]);
-      Assert.Equal(mat[1, 1], expectedIdentity[1, 1]);
-      Assert.Equal(mat[2, 2], expectedIdentity[2, 2]);
-      Assert.Equal(mat[3, 3], expectedIdentity[3, 3]);
+      Assert.Equal(mat, expectedIdentity);
     }
 
     [Fact]
