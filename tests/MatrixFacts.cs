@@ -202,5 +202,20 @@ public class MatrixFacts
       Assert.Equal(mat[0, 2], expectedTransposedMatrix[0, 2]);
       Assert.Equal(mat[0, 3], expectedTransposedMatrix[0, 3]);
     }
+
+    [Fact]
+    public void Validate2x2MatrixDeterminant()
+    {
+      double[,] arr5 = {
+      {1, 5},
+      {-3, 2}
+      };
+      double expectedDeterminant = 17;
+
+      Matrix matD = new(arr5);
+      double matDDeterminant = matD.Determinant();
+
+      Assert.Equal(expectedDeterminant, matDDeterminant);
+    }
   }
 }
