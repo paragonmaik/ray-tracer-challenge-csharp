@@ -21,6 +21,27 @@ public class Matrix
     ValidateMatrixLength();
   }
 
+  public override bool Equals(object? obj)
+  {
+    if (obj == null)
+    {
+      return false;
+    }
+
+    Matrix matB = (Matrix)obj;
+
+
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        if (this[r, c] != matB[r, c]) return false;
+      }
+    }
+
+    return true;
+  }
+
   public int GetSize() { return size; }
 
   public double this[int i, int j]
@@ -115,14 +136,78 @@ public class Matrix
 
   public double Determinant()
   {
-    if (this.size == 2)
+    // TODO: add temporary double variable to be returned
+    if (size == 2)
     {
       return Calculate2x2Det();
     }
     return 0;
   }
 
+  public Matrix SubMatrix(int row, int column)
+  {
+    if (size < 3)
+    {
+      throw new ArgumentNullException();
+    }
+
+    if (row >= size || column >= size)
+    {
+      throw new ArgumentNullException();
+    }
+
+    Matrix submatrix = new(size - 1);
+    int i = 0;
+
+    for (var r = 0; r < size; r++)
+    {
+      int j = 0;
+
+      if (r == row) continue;
+
+      for (var c = 0; c < size; c++)
+      {
+        if (c == column) continue;
+
+        submatrix[i, j] = this[r, c];
+        j++;
+      }
+      i++;
+    }
+
+    return submatrix;
+  }
+
   // Private methods
+
+  private Matrix Get4x4SubMatrix(int row, int column)
+  {
+    Matrix submatrix = new(size - 1);
+    int i = 0;
+
+    for (var r = 0; r < size; r++)
+    {
+      int j = 0;
+
+      if (r == row) continue;
+
+      for (var c = 0; c < size; c++)
+      {
+        if (c == column) continue;
+
+        submatrix[i, j] = this[r, c];
+        j++;
+      }
+      i++;
+    }
+
+    return submatrix;
+  }
+
+  private double Calculate2x2Det()
+  {
+    return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
+  }
 
   private void ValidateMatrixLength()
   {
@@ -131,11 +216,6 @@ public class Matrix
       throw new ArgumentNullException("Height and width should have the same length.");
     }
     this.size = values.GetLength(0);
-  }
-
-  private double Calculate2x2Det()
-  {
-    return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
   }
 
   private double[,] CastMatrixToValArray(Matrix mat)
