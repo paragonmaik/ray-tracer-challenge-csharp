@@ -15,15 +15,6 @@ public class Matrix
     ValidateMatrixLength();
   }
 
-  private void ValidateMatrixLength()
-  {
-    if (values.GetLength(0) != values.GetLength(1))
-    {
-      throw new ArgumentNullException("Height and width should have the same length.");
-    }
-    this.size = values.GetLength(0);
-  }
-
   public int GetSize() { return size; }
 
   public double this[int i, int j]
@@ -119,6 +110,24 @@ public class Matrix
   }
 
   public double Determinant()
+  {
+    if (this.size == 2)
+    {
+      return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
+    }
+    return 0;
+  }
+
+  private void ValidateMatrixLength()
+  {
+    if (values.GetLength(0) != values.GetLength(1))
+    {
+      throw new ArgumentNullException("Height and width should have the same length.");
+    }
+    this.size = values.GetLength(0);
+  }
+
+  private double Calculate2x2Det()
   {
     return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
   }
