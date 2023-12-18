@@ -21,27 +21,6 @@ public class Matrix
     ValidateMatrixLength();
   }
 
-  public override bool Equals(object? obj)
-  {
-    if (obj == null)
-    {
-      return false;
-    }
-
-    Matrix matB = (Matrix)obj;
-
-
-    for (int r = 0; r < size; r++)
-    {
-      for (int c = 0; c < size; c++)
-      {
-        if (this[r, c] != matB[r, c]) return false;
-      }
-    }
-
-    return true;
-  }
-
   public int GetSize() { return size; }
 
   public double this[int i, int j]
@@ -180,30 +159,6 @@ public class Matrix
 
   // Private methods
 
-  private Matrix Get4x4SubMatrix(int row, int column)
-  {
-    Matrix submatrix = new(size - 1);
-    int i = 0;
-
-    for (var r = 0; r < size; r++)
-    {
-      int j = 0;
-
-      if (r == row) continue;
-
-      for (var c = 0; c < size; c++)
-      {
-        if (c == column) continue;
-
-        submatrix[i, j] = this[r, c];
-        j++;
-      }
-      i++;
-    }
-
-    return submatrix;
-  }
-
   private double Calculate2x2Det()
   {
     return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
@@ -231,5 +186,33 @@ public class Matrix
     }
 
     return temp;
+  }
+
+  // Overridden methods
+
+  public override bool Equals(object? obj)
+  {
+    if (obj == null)
+    {
+      return false;
+    }
+
+    Matrix matB = (Matrix)obj;
+
+
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        if (this[r, c] != matB[r, c]) return false;
+      }
+    }
+
+    return true;
+  }
+
+  public override int GetHashCode()
+  {
+    return base.GetHashCode();
   }
 }
