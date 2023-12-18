@@ -3,6 +3,12 @@ public class Matrix
   private double[,] values;
   private int size;
 
+  public Matrix(Matrix mat)
+  {
+    this.values = CastMatrixToValArray(mat);
+    this.size = mat.size;
+  }
+
   public Matrix(int size)
   {
     this.size = size;
@@ -96,8 +102,6 @@ public class Matrix
       }
     }
 
-    //TODO: refactor by adding a new constructor
-    //that takes a Matrix as arg
     for (int r = 0; r < size; r++)
     {
       for (int c = 0; c < size; c++)
@@ -130,5 +134,20 @@ public class Matrix
   private double Calculate2x2Det()
   {
     return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
+  }
+
+  private double[,] CastMatrixToValArray(Matrix mat)
+  {
+    double[,] temp = new double[mat.size, mat.size];
+
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        temp[r, c] = mat[r, c];
+      }
+    }
+
+    return temp;
   }
 }
