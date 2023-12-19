@@ -139,13 +139,15 @@ public class Matrix
 
     if (size == 2)
     {
-      determinant = Calculate2x2Det();
+      determinant = this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
     }
     else
     {
-      determinant = CalculateDet();
+      for (var c = 0; c < size; c++)
+      {
+        determinant += this[0, c] * this.Cofactor(0, c);
+      }
     }
-
 
     return determinant;
   }
@@ -185,27 +187,6 @@ public class Matrix
   }
 
   // Private methods
-
-  private double Calculate2x2Det()
-  {
-    return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
-  }
-
-  private double CalculateDet()
-  {
-    double determinant = 0f;
-
-    for (var c = 0; c < size; c++)
-    {
-      determinant += this[0, c] * this.Cofactor(0, c);
-    }
-
-    return determinant;
-
-    // return this[0, 0] * this.Cofactor(0, 0) +
-    //         this[0, 1] * this.Cofactor(0, 1) +
-    //         this[0, 2] * this.Cofactor(0, 2);
-  }
 
   private void ValidateMatrixLength()
   {

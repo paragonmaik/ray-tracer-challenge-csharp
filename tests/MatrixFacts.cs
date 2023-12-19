@@ -240,7 +240,7 @@ public class MatrixFacts
       { -3, 1, 7, 3 },
       { 1, 2, -9, 6 },
       { -6, 7, 7, -9 }
-    };
+      };
       double expectedDeterminant = -4071;
 
       Matrix mat = new(arr);
