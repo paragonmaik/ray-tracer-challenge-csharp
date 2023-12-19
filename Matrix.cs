@@ -113,6 +113,12 @@ public class Matrix
     return this;
   }
 
+  public double Minor(int row, int column)
+  {
+    Matrix submatrix = this.SubMatrix(row, column);
+    return submatrix.Determinant();
+  }
+
   public double Determinant()
   {
     // TODO: add temporary double variable to be returned
