@@ -135,12 +135,21 @@ public class Matrix
 
   public double Determinant()
   {
-    // TODO: add temporary double variable to be returned
+    double determinant = 0f;
+
     if (size == 2)
     {
-      return Calculate2x2Det();
+      determinant = Calculate2x2Det();
     }
-    return 0;
+    if (size == 3)
+    {
+      determinant = Calculate3x3Det();
+    }
+    if (size == 4)
+    {
+    }
+
+    return determinant;
   }
 
   public Matrix SubMatrix(int row, int column)
@@ -182,6 +191,13 @@ public class Matrix
   private double Calculate2x2Det()
   {
     return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
+  }
+
+  private double Calculate3x3Det()
+  {
+    return this[0, 0] * this.Cofactor(0, 0) +
+            this[0, 1] * this.Cofactor(0, 1) +
+            this[0, 2] * this.Cofactor(0, 2);
   }
 
   private void ValidateMatrixLength()
