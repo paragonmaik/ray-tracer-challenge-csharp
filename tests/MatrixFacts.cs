@@ -259,5 +259,21 @@ public class MatrixFacts
 
       Assert.Equal(expectedSubmatrix, submatrix);
     }
+
+    [Fact]
+    public void Validate3x3MatrixMinor()
+    {
+      double[,] arr = {
+      {0, 0, 0},
+      {1, 5, 0},
+      {-3, 2, 0}
+      };
+      double expectedMinor = 17;
+
+      Matrix mat = new(arr);
+      double matMinor = mat.Minor(0, 2);
+
+      Assert.Equal(expectedMinor, matMinor);
+    }
   }
 }
