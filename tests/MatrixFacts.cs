@@ -233,6 +233,23 @@ public class MatrixFacts
     }
 
     [Fact]
+    public void Validate4x4MatrixDeterminant()
+    {
+      double[,] arr = {
+      { -2, -8, 3, 5 },
+      { -3, 1, 7, 3 },
+      { 1, 2, -9, 6 },
+      { -6, 7, 7, -9 }
+    };
+      double expectedDeterminant = -4071;
+
+      Matrix mat = new(arr);
+      double matDeterminant = mat.Determinant();
+
+      Assert.Equal(expectedDeterminant, matDeterminant);
+    }
+
+    [Fact]
     public void Validate3x3Submatrix()
     {
       double[,] arr1 = {
