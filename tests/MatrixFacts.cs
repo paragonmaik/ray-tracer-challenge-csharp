@@ -275,5 +275,22 @@ public class MatrixFacts
 
       Assert.Equal(expectedMinor, matMinor);
     }
+
+    [Fact]
+    public void Validate3x3MatrixCofactor()
+    {
+      double[,] arr10 = {
+      { 3, 5, 0 },
+      { 2, -1, -7 },
+      { 6, -1, 5 }
+      };
+
+      double expectedCofactor = -25;
+      Matrix mat = new(arr10);
+
+      double matCofactor = mat.Cofactor(1, 0);
+
+      Assert.Equal(expectedCofactor, matCofactor);
+    }
   }
 }
