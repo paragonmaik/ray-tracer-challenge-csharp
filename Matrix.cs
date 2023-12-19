@@ -119,6 +119,20 @@ public class Matrix
     return submatrix.Determinant();
   }
 
+  public double Cofactor(int row, int column)
+  {
+    double minor = this.Minor(row, column);
+
+    if (((row + column) % 2) == 0)
+    {
+      return minor;
+    }
+    else
+    {
+      return -minor;
+    }
+  }
+
   public double Determinant()
   {
     // TODO: add temporary double variable to be returned
