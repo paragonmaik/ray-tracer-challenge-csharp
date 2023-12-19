@@ -141,13 +141,11 @@ public class Matrix
     {
       determinant = Calculate2x2Det();
     }
-    if (size == 3)
+    else
     {
-      determinant = Calculate3x3Det();
+      determinant = CalculateDet();
     }
-    if (size == 4)
-    {
-    }
+
 
     return determinant;
   }
@@ -193,11 +191,20 @@ public class Matrix
     return this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
   }
 
-  private double Calculate3x3Det()
+  private double CalculateDet()
   {
-    return this[0, 0] * this.Cofactor(0, 0) +
-            this[0, 1] * this.Cofactor(0, 1) +
-            this[0, 2] * this.Cofactor(0, 2);
+    double determinant = 0f;
+
+    for (var c = 0; c < size; c++)
+    {
+      determinant += this[0, c] * this.Cofactor(0, c);
+    }
+
+    return determinant;
+
+    // return this[0, 0] * this.Cofactor(0, 0) +
+    //         this[0, 1] * this.Cofactor(0, 1) +
+    //         this[0, 2] * this.Cofactor(0, 2);
   }
 
   private void ValidateMatrixLength()
