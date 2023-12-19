@@ -216,6 +216,23 @@ public class MatrixFacts
     }
 
     [Fact]
+    public void Validate3x3MatrixDeterminant()
+    {
+      double[,] arr = {
+      { 1, 2, 6 },
+      { -5, 8, -4 },
+      { 2, 6, 4 },
+      };
+
+      double expectedDeterminant = -196;
+
+      Matrix mat = new(arr);
+      double matDeterminant = mat.Determinant();
+
+      Assert.Equal(expectedDeterminant, matDeterminant);
+    }
+
+    [Fact]
     public void Validate3x3Submatrix()
     {
       double[,] arr1 = {
