@@ -326,5 +326,22 @@ public class MatrixFacts
 
       Assert.Equal(expectedCofactor, matCofactor);
     }
+
+    [Fact]
+    public void ValidateWhetherMatrixIsInvertible()
+    {
+      double[,] arr = {
+      { -4, 2, -2, -3 },
+      { 9, 6, 2, 6 },
+      { 0, -5, 1, -5 },
+      { 0, 0, 0, 1 }
+      };
+      double unexpectedDeterminant = 0f;
+
+      Matrix mat = new(arr);
+
+      double actualDeterminant = mat.Determinant();
+      Assert.NotEqual(unexpectedDeterminant, actualDeterminant);
+    }
   }
 }
