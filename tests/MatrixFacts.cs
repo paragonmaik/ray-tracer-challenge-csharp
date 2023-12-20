@@ -336,12 +336,15 @@ public class MatrixFacts
       { 0, -5, 1, -5 },
       { 0, 0, 0, 1 }
       };
-      double unexpectedDeterminant = 0f;
-
       Matrix mat = new(arr);
 
-      double actualDeterminant = mat.Determinant();
-      Assert.NotEqual(unexpectedDeterminant, actualDeterminant);
+      Action act = () => mat.Inverse();
+      NonInvertibleMatrixException exception = Assert
+        .Throws<NonInvertibleMatrixException>(act);
+
+      Assert.Equal(
+          "Determinant equals 0, Matrix cannot be inverted",
+          exception.Message);
     }
   }
 }
