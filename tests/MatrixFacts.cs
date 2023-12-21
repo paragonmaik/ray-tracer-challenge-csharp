@@ -334,7 +334,7 @@ public class MatrixFacts
       { -4, 2, -2, -3 },
       { 9, 6, 2, 6 },
       { 0, -5, 1, -5 },
-      { 0, 0, 0, 1 }
+      { 0, 0, 0, 0 }
       };
       Matrix mat = new(arr);
 
@@ -345,6 +345,77 @@ public class MatrixFacts
       Assert.Equal(
           "Determinant equals 0, Matrix cannot be inverted",
           exception.Message);
+    }
+
+    [Fact]
+    public void ValidateInverseMatrix1()
+    {
+      double[,] matValues = {
+       { 8, -5, 9, 2 },
+       { 7, 5, 6, 1 },
+       { -6, 0, 9, 6 },
+       { -3, 0, -9, -4 }
+      };
+      double[,] inverseMatValues = {
+       { -0.15385, -0.15385, -0.28205, -0.53846 },
+       { -0.07692, 0.12308, 0.02564, 0.03077 },
+       { 0.35897, 0.35897, 0.43590, 0.92308 },
+       { -0.69231, -0.69231, -0.76923, -1.92308 }
+      };
+      Matrix mat = new(matValues);
+      Matrix expectedInverseMat = new(inverseMatValues);
+
+      Matrix actualMat = mat.Inverse();
+
+      Assert.Equal(expectedInverseMat, actualMat);
+    }
+
+    [Fact]
+    public void ValidateInverseMatrix2()
+    {
+      double[,] matValues = {
+      { 9 , 3 , 0 , 9 },
+      { -5 , -2 , -6 , -3 },
+      { -4 , 9 , 6 , 4 },
+      { -7 , 6 , 6 , 2 }
+      };
+      double[,] inverseMatValues = {
+        { -0.04074 , -0.07778 , 0.14444 , -0.22222 },
+        { -0.07778 , 0.03333 , 0.36667 , -0.33333 },
+        { -0.02901 , -0.14630 , -0.10926 , 0.12963 },
+        { 0.17778 , 0.06667 , -0.26667 , 0.33333 }
+      };
+      Matrix mat = new(matValues);
+      Matrix expectedInverseMat = new(inverseMatValues);
+
+      Matrix actualMat = mat.Inverse();
+
+      Assert.Equal(expectedInverseMat, actualMat);
+    }
+
+    [Fact]
+    public void ValidateInverseMatrixMultiplication()
+    {
+      double[,] a = {
+        { 3 , -9 , 7 , 3 },
+        { 3 , -8 , 2 , -9 },
+        { -4 , 4 , 4 , 1 },
+        { -6 , 5 , -1 , 1 }
+      };
+      double[,] b = {
+        { 8 , 2 , 2 , 2 },
+        { 3 , -1 , 7 , 0 },
+        { 7 , 0 , 5 , 4 },
+        { 6 , -2 , 0 , 5 }
+      };
+
+      Matrix matrixA = new(a);
+      Matrix matrixB = new(b);
+
+      Matrix matrixC = matrixA * matrixB;
+      Matrix expectedMatrix = matrixC * matrixB.Inverse();
+
+      Assert.Equal(expectedMatrix, matrixA);
     }
   }
 }
