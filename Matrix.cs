@@ -186,6 +186,31 @@ public class Matrix
     return submatrix;
   }
 
+  public Matrix Inverse()
+  {
+    double determinant = this.Determinant();
+
+    if (determinant == 0f)
+    {
+      throw new NonInvertibleMatrixException(
+          "Determinant equals 0, Matrix cannot be inverted"
+          );
+    }
+    Matrix retVal = new(size);
+    Matrix a = new(this);
+
+
+    for (int r = 0; r < this.size; r++)
+    {
+      for (int c = 0; c < this.size; c++)
+      {
+        retVal[r, c] = Math.Round(Cofactor(c, r) / determinant, 5);
+      }
+    }
+
+    return retVal;
+  }
+
   // Private methods
 
   private void ValidateMatrixLength()
@@ -201,14 +226,13 @@ public class Matrix
   {
     double[,] temp = new double[mat.size, mat.size];
 
-    for (int r = 0; r < size; r++)
+    for (int r = 0; r < mat.size; r++)
     {
-      for (int c = 0; c < size; c++)
+      for (int c = 0; c < mat.size; c++)
       {
         temp[r, c] = mat[r, c];
       }
     }
-
     return temp;
   }
 
@@ -228,7 +252,8 @@ public class Matrix
     {
       for (int c = 0; c < size; c++)
       {
-        if (this[r, c] != matB[r, c]) return false;
+        if ((Math.Abs(this[r, c])
+              - Math.Abs(matB[r, c])) > 0.001f) return false;
       }
     }
 
