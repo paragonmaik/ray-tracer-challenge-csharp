@@ -206,7 +206,8 @@ public class Matrix
     {
       for (int c = 0; c < this.size; c++)
       {
-        retVal[r, c] = Math.Round(Cofactor(c, r) / determinant, 5);
+        // retVal[r, c] = Math.Round(Cofactor(c, r) / determinant, 5);
+        retVal[r, c] = Cofactor(c, r) / determinant;
       }
     }
 
@@ -254,11 +255,11 @@ public class Matrix
         {
           matrixString
             .Append(" | ")
-            .Append(this[r, c]);
+            .Append(Math.Round(this[r, c], 5));
 
           continue;
         }
-        matrixString.Append(this[r, c]);
+        matrixString.Append(Math.Round(this[r, c], 5));
       }
       matrixString
         .Append(" |")
