@@ -1,3 +1,5 @@
+using System.Text;
+
 public class Matrix
 {
   private double[,] values;
@@ -238,6 +240,33 @@ public class Matrix
 
   // Overridden methods
 
+  public override string ToString()
+  {
+    StringBuilder matrixString = new StringBuilder();
+
+    for (int r = 0; r < size; r++)
+    {
+      matrixString
+          .Append("| ");
+      for (int c = 0; c < size; c++)
+      {
+        if (c != 0)
+        {
+          matrixString
+            .Append(" | ")
+            .Append(this[r, c]);
+
+          continue;
+        }
+        matrixString.Append(this[r, c]);
+      }
+      matrixString
+        .Append(" |")
+        .AppendLine();
+    }
+
+    return matrixString.ToString();
+  }
   public override bool Equals(object? obj)
   {
     if (obj == null)
