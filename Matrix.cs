@@ -131,7 +131,7 @@ public class Matrix
     }
     else
     {
-      return -minor;
+      return minor * -1f;
     }
   }
 
@@ -265,7 +265,7 @@ public class Matrix
         .AppendLine();
     }
 
-    return matrixString.ToString();
+    return matrixString.ToString().Replace("-0 ", "0 ");
   }
   public override bool Equals(object? obj)
   {
