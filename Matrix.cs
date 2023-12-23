@@ -52,6 +52,7 @@ public class Matrix
 
   public static Tupl operator *(Matrix a, Tupl b)
   {
+    // TODO: fix 2x2 multiplication bug
     int size = a.GetSize();
     double[] temp = new double[size];
     double[] temp2 = { b.x, b.y, b.z, b.w };
@@ -70,6 +71,63 @@ public class Matrix
         (float)temp[2],
         (float)temp[3]
         );
+  }
+
+  public Matrix Translate(double x, double y, double z)
+  {
+    Matrix mat = new Matrix(this).Identity();
+
+    if (mat.GetSize() == 2)
+    {
+      mat[0, size - 1] = x;
+      mat[1, size - 1] = y;
+    }
+    else
+    {
+      mat[0, size - 1] = x;
+      mat[1, size - 1] = y;
+      mat[2, size - 1] = z;
+    }
+
+    return mat;
+  }
+
+  public Matrix Translate(Point point)
+  {
+    Matrix mat = new Matrix(this).Identity();
+
+    if (mat.GetSize() == 2)
+    {
+      mat[0, size - 1] = point.x;
+      mat[1, size - 1] = point.y;
+    }
+    else
+    {
+      mat[0, size - 1] = point.x;
+      mat[1, size - 1] = point.y;
+      mat[2, size - 1] = point.z;
+    }
+
+    return mat;
+  }
+
+  public Matrix Translate(Vector vector)
+  {
+    Matrix mat = new Matrix(this).Identity();
+
+    if (mat.GetSize() == 2)
+    {
+      mat[0, size - 1] = vector.x;
+      mat[1, size - 1] = vector.y;
+    }
+    else
+    {
+      mat[0, size - 1] = vector.x;
+      mat[1, size - 1] = vector.y;
+      mat[2, size - 1] = vector.z;
+    }
+
+    return mat;
   }
 
   public Matrix Identity()
