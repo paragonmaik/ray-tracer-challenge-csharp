@@ -418,4 +418,43 @@ public class MatrixFacts
       Assert.Equal(expectedMatrix, matrixA);
     }
   }
+
+  [Fact]
+  public void ValidateMultiplyTranslationMatrixByPoint()
+  {
+    Matrix mat = new(4);
+    Tupl expectedTupl = new(2, 1, 7, 1);
+
+    Matrix mat2 = mat.Translate(5f, -3f, 2f);
+    Point tupl = new(-3, 4, 5);
+    Tupl res = mat2 * tupl;
+
+    Assert.Equivalent(expectedTupl, res);
+  }
+
+  [Fact]
+  public void ValidateMultiplyTranslationMatrixInverseByPoint()
+  {
+    Matrix mat = new(4);
+    Tupl expectedTupl = new(-8, 7, 3, 1);
+
+    Matrix mat2 = mat.Translate(5f, -3f, 2f).Inverse();
+    Point tupl = new(-3, 4, 5);
+    Tupl res = mat2 * tupl;
+
+    Assert.Equivalent(expectedTupl, res);
+  }
+
+  [Fact]
+  public void ValidateMultiplyTranslationMatrixByVector()
+  {
+    Matrix mat = new(4);
+    Tupl expectedTupl = new(-3, 4, 5, 0);
+
+    Matrix mat2 = mat.Translate(5f, -3f, 2f);
+    Vector tupl = new(-3, 4, 5);
+    Tupl res = mat2 * tupl;
+
+    Assert.Equivalent(expectedTupl, res);
+  }
 }
