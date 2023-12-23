@@ -423,7 +423,7 @@ public class MatrixFacts
   public void ValidateMultiplyTranslationMatrixByPoint()
   {
     Matrix mat = new(4);
-    Point expectedPoint = new(2, 1, 7, 1);
+    Point expectedPoint = new(2, 1, 7);
 
     Matrix mat2 = mat.Translate(5f, -3f, 2f);
     Point point = new(-3, 4, 5);
@@ -436,7 +436,7 @@ public class MatrixFacts
   public void ValidateMultiplyTranslationMatrixInverseByPoint()
   {
     Matrix mat = new(4);
-    Point expectedPoint = new(-8, 7, 3, 1);
+    Point expectedPoint = new(-8, 7, 3);
 
     Matrix mat2 = mat.Translate(5f, -3f, 2f).Inverse();
     Point point = new(-3, 4, 5);
@@ -449,12 +449,64 @@ public class MatrixFacts
   public void ValidateMultiplyTranslationMatrixByVector()
   {
     Matrix mat = new(4);
-    Vector expectedVector = new(-3, 4, 5, 0);
+    Vector expectedVector = new(-3, 4, 5);
 
     Matrix mat2 = mat.Translate(5f, -3f, 2f);
     Vector vector = new(-3, 4, 5);
     Vector actualVector = mat2 * vector;
 
     Assert.Equivalent(expectedVector, actualVector);
+  }
+
+  [Fact]
+  public void ValidateMultiplyScaleMatrixByPoint()
+  {
+    Matrix mat = new(4);
+    Point expectedPoint = new(-8, 18, 32);
+
+    Matrix mat2 = mat.Scale(2, 3, 4);
+    Point point = new(-4, 6, 8);
+    Point actualPoint = mat2 * point;
+
+    Assert.Equivalent(expectedPoint, actualPoint);
+  }
+
+  [Fact]
+  public void ValidateMultiplyScaleMatrixByVector()
+  {
+    Matrix mat = new(4);
+    Vector expectedVector = new(-8, 18, 32);
+
+    Matrix mat2 = mat.Scale(2, 3, 4);
+    Vector vector = new(-4, 6, 8);
+    Vector actualVector = mat2 * vector;
+
+    Assert.Equivalent(expectedVector, actualVector);
+  }
+
+  [Fact]
+  public void ValidateMultiplyInverseScaleMatrixByVector()
+  {
+    Matrix mat = new(4);
+    Vector expectedVector = new(-2, 2, 2);
+
+    Matrix mat2 = mat.Scale(2, 3, 4).Inverse();
+    Vector vector = new(-4, 6, 8);
+    Vector actualVector = mat2 * vector;
+
+    Assert.Equivalent(expectedVector, actualVector);
+  }
+
+  [Fact]
+  public void ValidateScalingReflection()
+  {
+    Matrix mat = new(4);
+    Point expectedPoint = new(-2, 3, 4);
+
+    Matrix mat2 = mat.Scale(-1, 1, 1);
+    Point point = new(2, 3, 4);
+    Point actualPoint = mat2 * point;
+
+    Assert.Equivalent(expectedPoint, actualPoint);
   }
 }
