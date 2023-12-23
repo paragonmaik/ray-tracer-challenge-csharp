@@ -176,6 +176,25 @@ public class Matrix
     return mat;
   }
 
+  public Matrix Scale(double x, double y, double z)
+  {
+    Matrix mat = new Matrix(this).Identity();
+
+    if (mat.GetSize() == 2)
+    {
+      mat[0, 0] = x;
+      mat[1, 1] = y;
+    }
+    else
+    {
+      mat[0, 0] = x;
+      mat[1, 1] = y;
+      mat[2, 2] = z;
+    }
+
+    return mat;
+  }
+
   public Matrix Identity()
   {
     for (int r = 0; r < size; r++)
