@@ -423,38 +423,38 @@ public class MatrixFacts
   public void ValidateMultiplyTranslationMatrixByPoint()
   {
     Matrix mat = new(4);
-    Tupl expectedTupl = new(2, 1, 7, 1);
+    Point expectedPoint = new(2, 1, 7, 1);
 
     Matrix mat2 = mat.Translate(5f, -3f, 2f);
-    Point tupl = new(-3, 4, 5);
-    Tupl res = mat2 * tupl;
+    Point point = new(-3, 4, 5);
+    Point actualPoint = mat2 * point;
 
-    Assert.Equivalent(expectedTupl, res);
+    Assert.Equivalent(expectedPoint, actualPoint);
   }
 
   [Fact]
   public void ValidateMultiplyTranslationMatrixInverseByPoint()
   {
     Matrix mat = new(4);
-    Tupl expectedTupl = new(-8, 7, 3, 1);
+    Point expectedPoint = new(-8, 7, 3, 1);
 
     Matrix mat2 = mat.Translate(5f, -3f, 2f).Inverse();
-    Point tupl = new(-3, 4, 5);
-    Tupl res = mat2 * tupl;
+    Point point = new(-3, 4, 5);
+    Point actualPoint = mat2 * point;
 
-    Assert.Equivalent(expectedTupl, res);
+    Assert.Equivalent(expectedPoint, actualPoint);
   }
 
   [Fact]
   public void ValidateMultiplyTranslationMatrixByVector()
   {
     Matrix mat = new(4);
-    Tupl expectedTupl = new(-3, 4, 5, 0);
+    Vector expectedVector = new(-3, 4, 5, 0);
 
     Matrix mat2 = mat.Translate(5f, -3f, 2f);
-    Vector tupl = new(-3, 4, 5);
-    Tupl res = mat2 * tupl;
+    Vector vector = new(-3, 4, 5);
+    Vector actualVector = mat2 * vector;
 
-    Assert.Equivalent(expectedTupl, res);
+    Assert.Equivalent(expectedVector, actualVector);
   }
 }

@@ -73,6 +73,52 @@ public class Matrix
         );
   }
 
+  public static Vector operator *(Matrix a, Vector b)
+  {
+    // TODO: fix 2x2 multiplication bug
+    int size = a.GetSize();
+    double[] temp = new double[size];
+    double[] temp2 = { b.x, b.y, b.z, b.w };
+
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        temp[r] += a[r, c] * temp2[c];
+      }
+    }
+
+    return new Vector(
+        (float)temp[0],
+        (float)temp[1],
+        (float)temp[2],
+        (float)temp[3]
+        );
+  }
+
+  public static Point operator *(Matrix a, Point b)
+  {
+    // TODO: fix 2x2 multiplication bug
+    int size = a.GetSize();
+    double[] temp = new double[size];
+    double[] temp2 = { b.x, b.y, b.z, b.w };
+
+    for (int r = 0; r < size; r++)
+    {
+      for (int c = 0; c < size; c++)
+      {
+        temp[r] += a[r, c] * temp2[c];
+      }
+    }
+
+    return new Point(
+        (float)temp[0],
+        (float)temp[1],
+        (float)temp[2],
+        (float)temp[3]
+        );
+  }
+
   public Matrix Translate(double x, double y, double z)
   {
     Matrix mat = new Matrix(this).Identity();
