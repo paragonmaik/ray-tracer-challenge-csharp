@@ -31,5 +31,39 @@ public class Tupl
       this.z * b.z +
       this.w * b.w;
   }
+
+  public override bool Equals(object? obj)
+  {
+    if (obj == null)
+    {
+      return false;
+    }
+
+    if ((Math.Abs(this.x) - Math.Abs(this.x)) > 0.001f)
+    {
+      return false;
+    }
+
+    if ((Math.Abs(this.y) - Math.Abs(this.y)) > 0.001f)
+    {
+      return false;
+    }
+    if ((Math.Abs(this.z) - Math.Abs(this.z)) > 0.001f)
+    {
+      return false;
+    }
+
+    if ((Math.Abs(this.w) - Math.Abs(this.w)) > 0.001f)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  public override int GetHashCode()
+  {
+    return base.GetHashCode();
+  }
 }
 
