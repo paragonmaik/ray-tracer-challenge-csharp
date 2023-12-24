@@ -509,4 +509,55 @@ public class MatrixFacts
 
     Assert.Equivalent(expectedPoint, actualPoint);
   }
+
+  [Fact]
+  public void ValidateMultiplyXAxisRotationMatrixByPoint()
+  {
+    Matrix mat = new(4);
+
+    Point p = new Point(0, 1, 0);
+    Matrix halfQuarter = mat.RotateXAxis(Math.PI / 4.0f);
+
+    Assert.Equal(new Point(0,
+          (float)Math.Sqrt(2.0) / 2.0f,
+          (float)Math.Sqrt(2.0) / 2.0f),
+           halfQuarter * p);
+
+    Matrix inverseMat = halfQuarter.Inverse();
+    Assert.Equal(new Point(0,
+          (float)Math.Sqrt(2.0) / 2.0f,
+          (float)Math.Sqrt(2.0) / -2.0f),
+          inverseMat * p);
+  }
+
+  [Fact]
+  public void ValidateMultiplyYAxisRotationMatrixByPoint()
+  {
+    Matrix mat = new(4);
+
+    Point p = new Point(0, 0, 1);
+    Matrix halfQuarter = mat.RotateYAxis(Math.PI / 4.0f);
+    Matrix fullQuarter = mat.RotateYAxis(Math.PI / 2.0f);
+
+    Assert.Equal(new Point((float)Math.Sqrt(2.0) / 2.0f,
+          0,
+          (float)Math.Sqrt(2.0) / 2.0f),
+           halfQuarter * p);
+    Assert.Equal(new Point(1, 0, 0), fullQuarter * p);
+  }
+
+  [Fact]
+  public void ValidateMultiplyZAxisRotationMatrixByPoint()
+  {
+    Matrix mat = new(4);
+
+    Point p = new Point(0, 1, 0);
+    Matrix halfQuarter = mat.RotateZAxis(Math.PI / 4.0f);
+
+    Assert.Equal(new Point(
+          (float)Math.Sqrt(2.0) / 2.0f * -1.0f,
+          (float)Math.Sqrt(2.0) / 2.0f,
+          0),
+           halfQuarter * p);
+  }
 }
