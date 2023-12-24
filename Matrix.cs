@@ -176,6 +176,7 @@ public class Matrix
     return mat;
   }
 
+  // TODO: overload method with point and vector signatures
   public Matrix Scale(double x, double y, double z)
   {
     Matrix mat = new Matrix(this).Identity();
@@ -191,6 +192,42 @@ public class Matrix
       mat[1, 1] = y;
       mat[2, 2] = z;
     }
+
+    return mat;
+  }
+
+  public Matrix RotateXAxis(double x)
+  {
+    Matrix mat = new Matrix(this).Identity();
+
+    mat[1, 1] = Math.Cos(x);
+    mat[1, 2] = Math.Sin(x) * -1.0;
+    mat[2, 1] = Math.Sin(x);
+    mat[2, 2] = Math.Cos(x);
+
+    return mat;
+  }
+
+  public Matrix RotateYAxis(double y)
+  {
+    Matrix mat = new Matrix(this).Identity();
+
+    mat[0, 0] = Math.Cos(y);
+    mat[2, 0] = Math.Sin(y) * -1.0;
+    mat[0, 2] = Math.Sin(y);
+    mat[2, 2] = Math.Cos(y);
+
+    return mat;
+  }
+
+  public Matrix RotateZAxis(double z)
+  {
+    Matrix mat = new Matrix(this).Identity();
+
+    mat[0, 0] = Math.Cos(z);
+    mat[0, 1] = Math.Sin(z) * -1.0;
+    mat[1, 0] = Math.Sin(z);
+    mat[1, 1] = Math.Cos(z);
 
     return mat;
   }
@@ -391,6 +428,7 @@ public class Matrix
 
     return matrixString.ToString().Replace("-0 ", "0 ");
   }
+
   public override bool Equals(object? obj)
   {
     if (obj == null)
@@ -399,7 +437,6 @@ public class Matrix
     }
 
     Matrix matB = (Matrix)obj;
-
 
     for (int r = 0; r < size; r++)
     {
