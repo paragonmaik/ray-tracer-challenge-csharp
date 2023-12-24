@@ -38,22 +38,23 @@ public class Tupl
     {
       return false;
     }
+    Tupl tupl = (Tupl)obj;
 
-    if ((Math.Abs(this.x) - Math.Abs(this.x)) > 0.001f)
+    if ((Math.Abs(this.x) - Math.Abs(tupl.x)) > 0.001f)
     {
       return false;
     }
 
-    if ((Math.Abs(this.y) - Math.Abs(this.y)) > 0.001f)
+    if ((Math.Abs(this.y) - Math.Abs(tupl.y)) > 0.001f)
     {
       return false;
     }
-    if ((Math.Abs(this.z) - Math.Abs(this.z)) > 0.001f)
+    if ((Math.Abs(this.z) - Math.Abs(tupl.z)) > 0.001f)
     {
       return false;
     }
 
-    if ((Math.Abs(this.w) - Math.Abs(this.w)) > 0.001f)
+    if ((Math.Abs(this.w) - Math.Abs(tupl.w)) > 0.001f)
     {
       return false;
     }
