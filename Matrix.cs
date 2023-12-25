@@ -379,12 +379,10 @@ public class Matrix
     Matrix retVal = new(size);
     Matrix a = new(this);
 
-
     for (int r = 0; r < this.size; r++)
     {
       for (int c = 0; c < this.size; c++)
       {
-        // retVal[r, c] = Math.Round(Cofactor(c, r) / determinant, 5);
         retVal[r, c] = Cofactor(c, r) / determinant;
       }
     }
@@ -393,7 +391,6 @@ public class Matrix
   }
 
   // Private methods
-
   private void ValidateMatrixLength()
   {
     if (values.GetLength(0) != values.GetLength(1))
@@ -418,7 +415,6 @@ public class Matrix
   }
 
   // Overridden methods
-
   public override string ToString()
   {
     StringBuilder matrixString = new StringBuilder();
