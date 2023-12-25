@@ -32,6 +32,7 @@ public class Vector : Tupl
     return vectorSub;
   }
 
+  // TODO: retype float to double
   public static Vector operator *(Vector a, float b)
   {
     return new Vector(
