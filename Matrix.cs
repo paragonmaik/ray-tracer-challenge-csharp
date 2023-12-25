@@ -232,6 +232,24 @@ public class Matrix
     return mat;
   }
 
+  public Matrix Shear(
+      double xy, double xz,
+      double yx, double yz,
+      double zx, double zy
+      )
+  {
+    Matrix mat = new Matrix(this).Identity();
+
+    mat[0, 1] = xy;
+    mat[0, 2] = xz;
+    mat[1, 0] = yx;
+    mat[1, 2] = yz;
+    mat[2, 0] = zx;
+    mat[2, 1] = zy;
+
+    return mat;
+  }
+
   public Matrix Identity()
   {
     for (int r = 0; r < size; r++)
