@@ -560,4 +560,94 @@ public class MatrixFacts
           0),
            halfQuarter * p);
   }
+
+  [Fact]
+  public void ValidateMultiplyXYShearMatrixByPoint()
+  {
+    Matrix mat = new(4);
+    Point expectedPoint = new Point(5, 3, 4);
+    Point point = new Point(2, 3, 4);
+    Matrix shearMat = mat.Shear(
+              1, 0, 0, 0, 0, 0
+              );
+
+    Point actualPoint = shearMat * point;
+
+    Assert.Equal(expectedPoint, actualPoint);
+  }
+
+  [Fact]
+  public void ValidateMultiplyXZShearMatrixByPoint()
+  {
+    Matrix mat = new(4);
+    Point expectedPoint = new Point(6, 3, 4);
+    Point point = new Point(2, 3, 4);
+    Matrix shearMat = mat.Shear(
+              0, 1, 0, 0, 0, 0
+              );
+
+    Point actualPoint = shearMat * point;
+
+    Assert.Equal(expectedPoint, actualPoint);
+  }
+
+  [Fact]
+  public void ValidateMultiplyYXShearMatrixByPoint()
+  {
+    Matrix mat = new(4);
+    Point expectedPoint = new Point(2, 5, 4);
+    Point point = new Point(2, 3, 4);
+    Matrix shearMat = mat.Shear(
+              0, 0, 1, 0, 0, 0
+              );
+
+    Point actualPoint = shearMat * point;
+
+    Assert.Equal(expectedPoint, actualPoint);
+  }
+
+  [Fact]
+  public void ValidateMultiplyYZShearMatrixByPoint()
+  {
+    Matrix mat = new(4);
+    Point expectedPoint = new Point(2, 7, 4);
+    Point point = new Point(2, 3, 4);
+    Matrix shearMat = mat.Shear(
+              0, 0, 0, 1, 0, 0
+              );
+
+    Point actualPoint = shearMat * point;
+
+    Assert.Equal(expectedPoint, actualPoint);
+  }
+
+  [Fact]
+  public void ValidateMultiplyZXShearMatrixByPoint()
+  {
+    Matrix mat = new(4);
+    Point expectedPoint = new Point(2, 3, 6);
+    Point point = new Point(2, 3, 4);
+    Matrix shearMat = mat.Shear(
+              0, 0, 0, 0, 1, 0
+              );
+
+    Point actualPoint = shearMat * point;
+
+    Assert.Equal(expectedPoint, actualPoint);
+  }
+
+  [Fact]
+  public void ValidateMultiplyZYShearMatrixByPoint()
+  {
+    Matrix mat = new(4);
+    Point expectedPoint = new Point(2, 3, 7);
+    Point point = new Point(2, 3, 4);
+    Matrix shearMat = mat.Shear(
+              0, 0, 0, 0, 0, 1
+              );
+
+    Point actualPoint = shearMat * point;
+
+    Assert.Equal(expectedPoint, actualPoint);
+  }
 }
