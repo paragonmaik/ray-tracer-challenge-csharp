@@ -650,4 +650,27 @@ public class MatrixFacts
 
     Assert.Equal(expectedPoint, actualPoint);
   }
+
+  [Fact]
+  public void ValidateIndividualTransformationsAtOnce()
+  {
+    Matrix mat = new(4);
+    Point p = new Point(1, 0, 1);
+
+    Matrix A = mat.RotateXAxis(Math.PI / 2.0f);
+    Matrix B = mat.Scale(5, 5, 5);
+    Matrix C = mat.Translate(10, 5, 7);
+
+    Point p2 = A * p;
+    Assert.Equal(new Point(1, -1, 0), p2);
+
+    Point p3 = B * p2;
+    Assert.Equal(new Point(5, -5, 0), p3);
+
+    Point p4 = C * p3;
+    Assert.Equal(new Point(15, 0, 7), p4);
+
+    Matrix trans = C * B * A;
+    Assert.Equal(new Point(15, 0, 7), trans * p);
+  }
 }
