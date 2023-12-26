@@ -66,5 +66,10 @@ public class Tupl
   {
     return base.GetHashCode();
   }
+
+  public override string ToString()
+  {
+    return $"x: {this.x}, y: {this.y}, z: {this.z}, w: {this.w}";
+  }
 }
 
