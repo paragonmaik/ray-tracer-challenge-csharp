@@ -14,9 +14,9 @@ public class Ray
     return this.origin + this.direction * (float)t;
   }
 
-  public List<double> Intersect(Sphere s)
+  public List<Intersection> Intersect(Sphere s)
   {
-    List<double> intersections = new();
+    List<Intersection> intersections = new();
 
     Vector sphereToRay = this.origin - s.Origin();
     double a = this.direction.Dot(this.direction);
@@ -33,10 +33,11 @@ public class Ray
     double t1 = (-b - (double)Math.Sqrt(discriminant)) / (2.0f * a);
     double t2 = (-b + (double)Math.Sqrt(discriminant)) / (2.0f * a);
 
-    intersections.Add(t1);
-    intersections.Add(t2);
+    intersections.Add(new(t1, s));
+    intersections.Add(new(t2, s));
 
     return intersections;
+
   }
 
   public Point Origin() { return this.origin; }

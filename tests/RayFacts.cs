@@ -26,13 +26,20 @@ public class RayFacts
     {
       Ray ray = new(new(0, 0, -5), new(0, 0, 1));
       Sphere sphere = new();
-      List<double> expectedIntersections = new() { 4f, 6f };
+      List<Intersection> expectedIntersections = new() {
+        new(4f, sphere), new(6f, sphere) };
 
-      List<double> actualIntersections = ray.Intersect(sphere);
+
+      List<Intersection> actualIntersections = ray
+        .Intersect(sphere);
 
       for (int i = 0; i < 2; i++)
       {
-        Assert.Equal(expectedIntersections, actualIntersections);
+        Assert.Equal(
+            expectedIntersections[i].t, actualIntersections[i].t);
+        Assert.Equal(
+            expectedIntersections[i].intersectedObj,
+            actualIntersections[i].intersectedObj);
       }
     }
 
@@ -41,13 +48,19 @@ public class RayFacts
     {
       Ray ray = new(new(0, 1, -5), new(0, 0, 1));
       Sphere sphere = new();
-      List<double> expectedIntersections = new() { 5f, 5f };
+      List<Intersection> expectedIntersections = new() {
+        new(5f, sphere), new(5f, sphere) };
 
-      List<double> actualIntersections = ray.Intersect(sphere);
+      List<Intersection> actualIntersections = ray
+        .Intersect(sphere);
 
       for (int i = 0; i < 2; i++)
       {
-        Assert.Equal(expectedIntersections, actualIntersections);
+        Assert.Equal(
+             expectedIntersections[i].t, actualIntersections[i].t);
+        Assert.Equal(
+            expectedIntersections[i].intersectedObj,
+            actualIntersections[i].intersectedObj);
       }
     }
 
@@ -56,12 +69,13 @@ public class RayFacts
     {
       Ray ray = new(new(0, 2, -5), new(0, 0, 1));
       Sphere sphere = new();
-      int expectdIntersectionsCount = 0;
+      int expectedIntersectionsCount = 0;
 
-      List<double> actualIntersections = ray.Intersect(sphere);
+      List<Intersection> actualIntersections = ray
+        .Intersect(sphere);
 
       Assert.Equal(
-          expectdIntersectionsCount, actualIntersections.Count);
+          expectedIntersectionsCount, actualIntersections.Count);
     }
 
     [Fact]
@@ -69,13 +83,19 @@ public class RayFacts
     {
       Ray ray = new(new(0, 0, 0), new(0, 0, 1));
       Sphere sphere = new();
-      List<double> expectedIntersections = new() { -1f, 1f };
+      List<Intersection> expectedIntersections = new() {
+        new(-1f, sphere), new(1f, sphere) };
 
-      List<double> actualIntersections = ray.Intersect(sphere);
+      List<Intersection> actualIntersections = ray
+        .Intersect(sphere);
 
       for (int i = 0; i < 2; i++)
       {
-        Assert.Equal(expectedIntersections, actualIntersections);
+        Assert.Equal(
+             expectedIntersections[i].t, actualIntersections[i].t);
+        Assert.Equal(
+            expectedIntersections[i].intersectedObj,
+            actualIntersections[i].intersectedObj);
       }
     }
 
@@ -84,14 +104,44 @@ public class RayFacts
     {
       Ray ray = new(new(0, 0, 5), new(0, 0, 1));
       Sphere sphere = new();
-      List<double> expectedIntersections = new() { -6f, -4f };
+      List<Intersection> expectedIntersections = new() {
+        new(-6f, sphere), new(-4f, sphere) };
 
-      List<double> actualIntersections = ray.Intersect(sphere);
+      List<Intersection> actualIntersections = ray
+        .Intersect(sphere);
 
       for (int i = 0; i < 2; i++)
       {
-        Assert.Equal(expectedIntersections, actualIntersections);
+        Assert.Equal(
+             expectedIntersections[i].t, actualIntersections[i].t);
+        Assert.Equal(
+            expectedIntersections[i].intersectedObj,
+            actualIntersections[i].intersectedObj);
       }
+    }
+
+    [Fact]
+    public void ValidateIntersectionInstantiation()
+    {
+      Sphere sphere = new();
+      Intersection intersection = new(3.5f, sphere);
+
+      Assert.Equal(3.5f, intersection.t);
+      Assert.Equal(sphere, intersection.intersectedObj);
+    }
+
+    [Fact]
+    public void ValidateIntersectionReturnsCorrectData()
+    {
+      Sphere sphere = new();
+      List<Intersection> intersections = new() { new(1, sphere),
+        new(2, sphere) };
+
+      Assert.Equal(1, intersections[0].t);
+      Assert.Equal(sphere, intersections[0].intersectedObj);
+
+      Assert.Equal(2, intersections[1].t);
+      Assert.Equal(sphere, intersections[1].intersectedObj);
     }
   }
 }
