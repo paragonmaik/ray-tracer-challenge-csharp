@@ -12,4 +12,26 @@ public class Sphere : IIntersectable
   }
 
   public Point Origin() { return this.origin; }
+
+  public override bool Equals(object? obj)
+  {
+    if (obj == null)
+    {
+      return false;
+    }
+
+    Sphere sphereB = (Sphere)obj;
+
+    if (this.id != sphereB.id)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  public override int GetHashCode()
+  {
+    return base.GetHashCode();
+  }
 }
