@@ -37,7 +37,27 @@ public class Ray
     intersections.Add(new(t2, s));
 
     return intersections;
+  }
 
+  public Intersection Hit(List<Intersection> intersections)
+  {
+    if (intersections.Count == 0)
+    {
+      // TODO: throw custom exception
+      throw new ArgumentException();
+    }
+
+    Intersection firstHit = null;
+
+    foreach (var inter in intersections)
+    {
+      if (inter.t < 0.0f) continue;
+
+      firstHit = inter;
+      break;
+    }
+
+    return firstHit;
   }
 
   public Point Origin() { return this.origin; }
