@@ -28,9 +28,11 @@ public class Ray
   {
     List<Intersection> intersections = new();
 
-    Vector sphereToRay = this.origin - s.Origin();
-    double a = this.direction.Dot(this.direction);
-    double b = 2.0f * direction.Dot(sphereToRay);
+    Ray transRay = this * s.GetMatrix().Inverse();
+
+    Vector sphereToRay = transRay.origin - s.Origin();
+    double a = transRay.direction.Dot(transRay.direction);
+    double b = 2.0f * transRay.direction.Dot(sphereToRay);
     double c = sphereToRay.Dot(sphereToRay) - 1.0f;
 
     double discriminant = b * b - 4.0f * a * c;
