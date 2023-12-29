@@ -14,6 +14,16 @@ public class Ray
     return this.origin + this.direction * (float)t;
   }
 
+  public static Ray operator *(Ray r, Matrix mat)
+  {
+    Ray tempRay = new(r.origin, r.direction);
+
+    tempRay.origin = mat * r.origin;
+    tempRay.direction = mat * r.direction;
+
+    return tempRay;
+  }
+
   public List<Intersection> Intersect(Sphere s)
   {
     List<Intersection> intersections = new();
@@ -62,4 +72,9 @@ public class Ray
 
   public Point Origin() { return this.origin; }
   public Vector Direction() { return this.direction; }
+
+  public override string ToString()
+  {
+    return $"Ray's origin: {this.origin}, Ray's direction: {this.direction}";
+  }
 }
