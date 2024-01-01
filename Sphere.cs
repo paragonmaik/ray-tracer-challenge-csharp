@@ -19,7 +19,12 @@ public class Sphere : IIntersectable
 
   public Vector NormalAt(Point point)
   {
-    return (point - new Point(0, 0, 0)).Normalize();
+    Point objectPoint = this.mat.Inverse() * point;
+    Vector objectNormal = objectPoint - new Point(0, 0, 0);
+    Vector worldNormal = this.mat.Inverse().Transpose() * objectNormal;
+    worldNormal.w = 0;
+
+    return worldNormal.Normalize();
   }
 
   public override bool Equals(object? obj)
