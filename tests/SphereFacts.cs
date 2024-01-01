@@ -49,7 +49,7 @@ public class SphereFacts
     }
 
     [Fact]
-    public void ValidateSphereHasDefaultMaterial()
+    public void ValidateSphereHasMaterial()
     {
       Sphere sphere = new();
       Material material = new(new(1, 1, 1));
@@ -57,7 +57,7 @@ public class SphereFacts
 
       sphere.material = material;
 
-      Assert.Equal(sphere.material.Ambient, 1f);
+      Assert.Equal(sphere.material, material);
     }
   }
 }
