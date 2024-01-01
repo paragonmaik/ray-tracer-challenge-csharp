@@ -17,6 +17,11 @@ public class Sphere : IIntersectable
   public Matrix GetMatrix() { return this.mat; }
   public void SetMatrix(Matrix mat) { this.mat = mat; }
 
+  public Vector NormalAt(Point point)
+  {
+    return (point - new Point(0, 0, 0)).Normalize();
+  }
+
   public override bool Equals(object? obj)
   {
     if (obj == null)
