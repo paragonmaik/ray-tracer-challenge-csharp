@@ -65,4 +65,50 @@ public class Material
       shininess = value;
     }
   }
+
+  public override bool Equals(object? obj)
+  {
+    if (obj == null)
+    {
+      return false;
+    }
+
+    Material material = (Material)obj;
+
+    if (this.color != material.color)
+    {
+      return false;
+    }
+
+    if (Math.Abs(this.ambient) -
+        Math.Abs(material.Ambient) < 0001f)
+    {
+      return false;
+    }
+
+    if (Math.Abs(this.diffuse) -
+            Math.Abs(material.Diffuse) < 0001f)
+    {
+      return false;
+    }
+
+    if (Math.Abs(this.specular) -
+            Math.Abs(material.Specular) < 0001f)
+    {
+      return false;
+    }
+
+    if (Math.Abs(this.shininess) -
+               Math.Abs(material.Shininess) < 0001f)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  public override int GetHashCode()
+  {
+    return base.GetHashCode();
+  }
 }
