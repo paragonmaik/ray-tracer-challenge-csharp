@@ -7,8 +7,8 @@ public class Material
   private double shininess;
 
   public Material(
-      Color color, double ambient, double diffuse,
-      double specular, double shininess
+      Color color, double ambient = 0.1f, double diffuse = 0.9f,
+      double specular = 0.9f, double shininess = 200f
       )
   {
     this.color = color;
