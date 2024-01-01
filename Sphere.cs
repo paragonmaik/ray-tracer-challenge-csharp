@@ -1,5 +1,6 @@
 public class Sphere : IIntersectable
 {
+  public Material material;
   private Point origin;
   private double radius;
   private Guid id;
@@ -7,6 +8,7 @@ public class Sphere : IIntersectable
 
   public Sphere()
   {
+    this.material = new(new(1, 1, 1));
     this.origin = new();
     this.radius = 1f;
     this.id = Guid.NewGuid();
