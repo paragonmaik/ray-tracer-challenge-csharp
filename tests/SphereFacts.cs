@@ -47,5 +47,17 @@ public class SphereFacts
 
       Assert.Equal(expectedVector, actualNormalizedVector);
     }
+
+    [Fact]
+    public void ValidateSphereHasDefaultMaterial()
+    {
+      Sphere sphere = new();
+      Material material = new(new(1, 1, 1));
+      material.Ambient = 1f;
+
+      sphere.material = material;
+
+      Assert.Equal(sphere.material.Ambient, 1f);
+    }
   }
 }
