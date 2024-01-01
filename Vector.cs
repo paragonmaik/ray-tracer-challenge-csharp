@@ -78,5 +78,11 @@ public class Vector : Tupl
         this.x * b.y - this.y * b.x
         );
   }
+
+  public Vector Reflect(Vector incoming, Vector normal)
+  {
+    return incoming - normal * 2 * (float)incoming.Dot(normal);
+
+  }
 }
 
