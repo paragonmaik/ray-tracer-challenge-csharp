@@ -10,11 +10,11 @@ public class MaterialFacts
       Material material = new(
           new(1, 1, 1), 0.1f, 0.9f, 0.9f, 200f);
 
-      Assert.Equal(material.color, new(1, 1, 1));
-      Assert.Equal(material.Ambient, 0.1f);
-      Assert.Equal(material.Diffuse, 0.9f);
-      Assert.Equal(material.Specular, 0.9f);
-      Assert.Equal(material.Shininess, 200f);
+      Assert.Equal(new(1, 1, 1), material.color);
+      Assert.Equal(0.1f, material.Ambient);
+      Assert.Equal(0.9f, material.Diffuse);
+      Assert.Equal(0.9f, material.Specular);
+      Assert.Equal(200f, material.Shininess);
     }
   }
 }
