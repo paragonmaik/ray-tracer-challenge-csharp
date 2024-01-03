@@ -55,8 +55,7 @@ public class Ray
   {
     if (intersections.Count == 0)
     {
-      // TODO: throw custom exception
-      throw new ArgumentException();
+      return null;
     }
 
     Intersection firstHit = null;
