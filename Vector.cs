@@ -72,10 +72,11 @@ public class Vector : Tupl
 
   public Vector Normalize()
   {
-    this.x = this.x / (float)Magnitude();
-    this.y = this.y / (float)Magnitude();
-    this.z = this.z / (float)Magnitude();
-    this.w = this.w / (float)Magnitude();
+    float magnitude = (float)Magnitude();
+    this.x = this.x / magnitude;
+    this.y = this.y / magnitude;
+    this.z = this.z / magnitude;
+    this.w = this.w / magnitude;
 
     return this;
   }
@@ -92,7 +93,6 @@ public class Vector : Tupl
   public Vector Reflect(Vector incoming, Vector normal)
   {
     return incoming - normal * 2 * (float)incoming.Dot(normal);
-
   }
 }
 
