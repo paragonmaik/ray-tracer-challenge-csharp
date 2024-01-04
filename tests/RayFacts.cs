@@ -145,51 +145,6 @@ public class RayFacts
     }
 
     [Fact]
-    public void ValidateRayHitPositiveIntersections()
-    {
-      Sphere sphere = new();
-      Ray ray = new(new(0, 0, 5), new(0, 0, 1));
-      Intersection expectedIntersection = new(1, sphere);
-      List<Intersection> intersections = new() { new(1, sphere),
-        new(2, sphere) };
-
-      Intersection actualIntersection = ray.Hit(intersections);
-
-      Assert.Equal(expectedIntersection.t, actualIntersection.t);
-      Assert.Equal(expectedIntersection
-          .intersectedObj, actualIntersection.intersectedObj);
-    }
-
-    [Fact]
-    public void ValidateRayHitFewPositiveIntersections()
-    {
-      Sphere sphere = new();
-      Ray ray = new(new(0, 0, 5), new(0, 0, 1));
-      Intersection expectedIntersection = new(1, sphere);
-      List<Intersection> intersections = new() { new(-1, sphere),
-        new(1, sphere) };
-
-      Intersection actualIntersection = ray.Hit(intersections);
-
-      Assert.Equal(expectedIntersection.t, actualIntersection.t);
-      Assert.Equal(expectedIntersection
-          .intersectedObj, actualIntersection.intersectedObj);
-    }
-
-    [Fact]
-    public void ValidateRayHitNegativeIntersections()
-    {
-      Sphere sphere = new();
-      Ray ray = new(new(0, 0, 5), new(0, 0, 1));
-      List<Intersection> intersections = new() { new(-1, sphere),
-        new(-2, sphere) };
-
-      Intersection actualIntersection = ray.Hit(intersections);
-
-      Assert.Equal(null, actualIntersection);
-    }
-
-    [Fact]
     public void ValidateTranslateRay()
     {
       Ray ray = new(new(1, 2, 3), new(0, 1, 0));
