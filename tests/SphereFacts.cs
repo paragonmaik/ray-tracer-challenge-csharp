@@ -59,5 +59,104 @@ public class SphereFacts
 
       Assert.Equal(sphere.material, material);
     }
+
+    [Fact]
+    public void ValidateRaySphereIntersection()
+    {
+      Ray ray = new(new(0, 0, -5), new(0, 0, 1));
+      Sphere sphere = new();
+      List<Intersection> expectedIntersections = new() {
+        new(4f, sphere), new(6f, sphere) };
+
+
+      List<Intersection> actualIntersections = sphere
+        .Intersect(ray);
+
+      for (int i = 0; i < 2; i++)
+      {
+        Assert.Equal(
+            expectedIntersections[i].t, actualIntersections[i].t);
+        Assert.Equal(
+            expectedIntersections[i].intersectedObj,
+            actualIntersections[i].intersectedObj);
+      }
+    }
+
+    [Fact]
+    public void ValidateRaySphereIntersectionAtTangent()
+    {
+      Ray ray = new(new(0, 1, -5), new(0, 0, 1));
+      Sphere sphere = new();
+      List<Intersection> expectedIntersections = new() {
+        new(5f, sphere), new(5f, sphere) };
+
+      List<Intersection> actualIntersections = sphere
+        .Intersect(ray);
+
+      for (int i = 0; i < 2; i++)
+      {
+        Assert.Equal(
+             expectedIntersections[i].t, actualIntersections[i].t);
+        Assert.Equal(
+            expectedIntersections[i].intersectedObj,
+            actualIntersections[i].intersectedObj);
+      }
+    }
+
+    [Fact]
+    public void ValidateRaySphereIntersectionMisses()
+    {
+      Ray ray = new(new(0, 2, -5), new(0, 0, 1));
+      Sphere sphere = new();
+      int expectedIntersectionsCount = 0;
+
+      List<Intersection> actualIntersections = sphere
+        .Intersect(ray);
+
+      Assert.Equal(
+          expectedIntersectionsCount, actualIntersections.Count);
+    }
+
+    [Fact]
+    public void ValidateRaySphereIntersectionRayOriginatesInside()
+    {
+      Ray ray = new(new(0, 0, 0), new(0, 0, 1));
+      Sphere sphere = new();
+      List<Intersection> expectedIntersections = new() {
+        new(-1f, sphere), new(1f, sphere) };
+
+      List<Intersection> actualIntersections = sphere
+        .Intersect(ray);
+
+      for (int i = 0; i < 2; i++)
+      {
+        Assert.Equal(
+             expectedIntersections[i].t, actualIntersections[i].t);
+        Assert.Equal(
+            expectedIntersections[i].intersectedObj,
+            actualIntersections[i].intersectedObj);
+      }
+    }
+
+    [Fact]
+    public void ValidateRaySphereIntersectionSphereBehindRay()
+    {
+      Ray ray = new(new(0, 0, 5), new(0, 0, 1));
+      Sphere sphere = new();
+      List<Intersection> expectedIntersections = new() {
+        new(-6f, sphere), new(-4f, sphere) };
+
+      List<Intersection> actualIntersections = sphere
+        .Intersect(ray);
+
+      for (int i = 0; i < 2; i++)
+      {
+        Assert.Equal(
+             expectedIntersections[i].t, actualIntersections[i].t);
+        Assert.Equal(
+            expectedIntersections[i].intersectedObj,
+            actualIntersections[i].intersectedObj);
+      }
+    }
   }
 }
