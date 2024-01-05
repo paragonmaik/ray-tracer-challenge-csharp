@@ -1,25 +1,13 @@
 public class Sphere : IntersectableObject
 {
-  public Material material;
-  private Point origin;
   private double radius;
-  private Guid id;
-  private Matrix mat;
 
   public Sphere()
   {
-    this.material = new(new(1, 1, 1));
-    this.origin = new();
     this.radius = 1f;
-    this.id = Guid.NewGuid();
-    this.mat = new Matrix(4).Identity();
   }
 
-  public Point Origin() { return this.origin; }
-  public Matrix GetMatrix() { return this.mat; }
-  public void SetMatrix(Matrix mat) { this.mat = mat; }
-
-  public List<Intersection> Intersect(Ray ray)
+  public override List<Intersection> Intersect(Ray ray)
   {
     List<Intersection> intersections = new();
 
@@ -46,7 +34,7 @@ public class Sphere : IntersectableObject
     return intersections;
   }
 
-  public Vector NormalAt(Point point)
+  public override Vector NormalAt(Point point)
   {
     Point objectPoint = this.mat.Inverse() * point;
     Vector objectNormal = objectPoint - new Point(0, 0, 0);
