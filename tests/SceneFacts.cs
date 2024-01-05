@@ -48,5 +48,30 @@ public class SceneFacts
 
       Assert.Equal(null, actualIntersection);
     }
+
+    [Fact]
+    public void ValidateWorldIntersectsRay()
+    {
+      Scene scene = new();
+      Ray ray = new(new(0, 0, -5), new(0, 0, 1));
+
+      List<double> expectedTIntersections = new(){
+        4, 4.5f, 5.5f, 6
+      };
+
+      List<Intersection> actualIntersections = scene
+        .IntersectWorld(ray);
+
+      Assert.Equal(expectedTIntersections
+          .Count(), actualIntersections.Count());
+      Assert.Equal(expectedTIntersections[0],
+          actualIntersections[0].t);
+      Assert.Equal(expectedTIntersections[1],
+               actualIntersections[1].t);
+      Assert.Equal(expectedTIntersections[2],
+               actualIntersections[2].t);
+      Assert.Equal(expectedTIntersections[3],
+               actualIntersections[3].t);
+    }
   }
 }
