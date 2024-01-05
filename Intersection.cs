@@ -1,9 +1,9 @@
 public class Intersection
 {
   public double t;
-  public IIntersectable intersectedObj;
+  public IntersectableObject intersectedObj;
 
-  public Intersection(double t, IIntersectable intersectedObj)
+  public Intersection(double t, IntersectableObject intersectedObj)
   {
     this.t = t;
     this.intersectedObj = intersectedObj;
