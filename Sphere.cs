@@ -1,4 +1,4 @@
-public class Sphere : IIntersectable
+public class Sphere : IntersectableObject
 {
   public Material material;
   private Point origin;
@@ -18,6 +18,33 @@ public class Sphere : IIntersectable
   public Point Origin() { return this.origin; }
   public Matrix GetMatrix() { return this.mat; }
   public void SetMatrix(Matrix mat) { this.mat = mat; }
+
+  public List<Intersection> Intersect(Ray ray)
+  {
+    List<Intersection> intersections = new();
+
+    Ray transRay = ray * this.GetMatrix().Inverse();
+
+    Vector sphereToRay = transRay.Origin() - this.Origin();
+    double a = transRay.Direction().Dot(transRay.Direction());
+    double b = 2.0f * transRay.Direction().Dot(sphereToRay);
+    double c = sphereToRay.Dot(sphereToRay) - 1.0f;
+
+    double discriminant = b * b - 4.0f * a * c;
+
+    if (discriminant < 0)
+    {
+      return intersections;
+    }
+
+    double t1 = (-b - (double)Math.Sqrt(discriminant)) / (2.0f * a);
+    double t2 = (-b + (double)Math.Sqrt(discriminant)) / (2.0f * a);
+
+    intersections.Add(new(t1, this));
+    intersections.Add(new(t2, this));
+
+    return intersections;
+  }
 
   public Vector NormalAt(Point point)
   {
