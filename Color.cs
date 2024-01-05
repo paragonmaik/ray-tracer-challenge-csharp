@@ -60,17 +60,17 @@ public class Color
 
     Color color = (Color)obj;
 
-    if (this.red != color.red)
+    if (Math.Abs(this.red - color.red) > 0.0001f)
     {
       return false;
     }
 
-    if (this.green != color.green)
+    if (Math.Abs(this.green - color.green) > 0.0001f)
     {
       return false;
     }
 
-    if (this.blue != color.blue)
+    if (Math.Abs(this.blue - color.blue) > 0.0001f)
     {
       return false;
     }
