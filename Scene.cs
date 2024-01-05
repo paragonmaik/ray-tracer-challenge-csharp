@@ -23,5 +23,4 @@ public class Scene
 
     return firstHit;
   }
-
 }
