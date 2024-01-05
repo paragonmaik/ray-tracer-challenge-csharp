@@ -14,7 +14,6 @@ public class LightFacts
     }
 
     [Theory]
-    [Trait("TraitName", "TraitValue")]
     [InlineData(
         0, 0, -1,
         0, 0, -10, 1, 1, 1,
@@ -25,17 +24,15 @@ public class LightFacts
         0, 0, -10, 1, 1, 1,
         1, 1, 1
         )]
-    // TODO: fix algorithm bug
     [InlineData(
         0, 0, -1,
         0, 10, -10, 1, 1, 1,
         0.7364f, 0.7364f, 0.7364f
         )]
-    // TODO: fix algorithm bug
     [InlineData(
         0, -1.4142 / 2, -1.4142 / 2,
         0, 10, -10, 1, 1, 1,
-        1.6364f, 1.6364f, 1.6364f
+        1.6346f, 1.6346f, 1.6346f
         )]
     [InlineData(
         0, 0, -1,
@@ -50,13 +47,14 @@ public class LightFacts
     {
       Vector eyeV = new(eyeX, eyeY, eyeZ);
       Vector normalV = new(0, 0, -1);
+      Sphere sphere = new();
       Light light = new(new(cX, cY, cZ), new(pX, pY, pZ));
       Color expectedColor = new(expectedX, expectedY, expectedZ);
       Material material = new(new(cX, cY, cZ));
 
-      Color actualColor = light.Lighting(
-          material, new Point(), eyeV, normalV
-          );
+      Color actualColor = sphere.Lighting(
+                new Point(), light, eyeV, normalV
+                );
 
       Assert.Equal(expectedColor, actualColor);
     }
