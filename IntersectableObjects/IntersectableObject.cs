@@ -22,7 +22,7 @@ public abstract class IntersectableObject
 
   public Color Lighting(Point position, Light light, Vector eye, Vector normal, bool inShadow = false)
   {
-    Material material = new(new(1, 1, 1));
+    Material material = this.material;
     Color temp = material.color;
     Color effectiveColor = temp * light.intensity;
     Vector lightVec = (light.position - position).Normalize();
@@ -30,25 +30,26 @@ public abstract class IntersectableObject
     Color diffuseColor;
     Color specularColor;
 
-    double lDotN = lightVec.Dot(normal);
+    double lightDotNormal = lightVec.Dot(normal);
 
-    if (lDotN <= 0)
+    if (lightDotNormal <= 0)
     {
       diffuseColor = new(0, 0, 0);
       specularColor = new(0, 0, 0);
     }
     else
     {
-      diffuseColor = effectiveColor * (float)material.Diffuse * (float)lDotN;
+      diffuseColor = effectiveColor * (float)material.Diffuse * (float)lightDotNormal;
       Vector reflect = new Vector().Reflect(-lightVec, normal);
-      double rDotE = reflect.Dot(eye);
+      double reflectDotEye = reflect.Dot(eye);
 
-      // Console.WriteLine(rDotE);
-      if (rDotE <= 0)
+      if (reflectDotEye <= 0)
+      {
         specularColor = new(0, 0, 0);
+      }
       else
       {
-        double factor = (double)Math.Pow((double)rDotE, (double)material.Shininess);
+        double factor = (double)Math.Pow((double)reflectDotEye, (double)material.Shininess);
         specularColor = light.intensity * (float)material.Specular * (float)factor;
       }
     }
