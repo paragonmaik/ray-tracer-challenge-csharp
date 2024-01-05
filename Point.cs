@@ -43,6 +43,17 @@ public class Point : Tupl
     return pointSub;
   }
 
+  public static Point operator -(Vector a, Point b)
+  {
+    Point pointSub = new(
+        a.x - b.x,
+        a.y - b.y,
+        a.z - b.z,
+        a.w - b.w);
+
+    return pointSub;
+  }
+
   public static Point operator *(Point a, float b)
   {
     return new Point(
