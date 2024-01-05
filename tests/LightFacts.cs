@@ -50,7 +50,6 @@ public class LightFacts
       Sphere sphere = new();
       Light light = new(new(cX, cY, cZ), new(pX, pY, pZ));
       Color expectedColor = new(expectedX, expectedY, expectedZ);
-      Material material = new(new(cX, cY, cZ));
 
       Color actualColor = sphere.Lighting(
                 new Point(), light, eyeV, normalV
