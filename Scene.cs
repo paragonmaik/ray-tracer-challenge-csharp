@@ -44,6 +44,8 @@ public class Scene
         );
   }
 
+  // TODO: rework after adding list that concatenates
+  // all of the IntersectableObjects
   public List<Intersection> IntersectWorld(Ray ray)
   {
     List<Intersection> intersections = new();
@@ -52,13 +54,20 @@ public class Scene
     List<Intersection> outerIntersections = outerSphere
       .Intersect(ray);
 
-    intersections.Add(innerIntersections[0]);
-    intersections.Add(innerIntersections[1]);
-    intersections.Add(outerIntersections[0]);
-    intersections.Add(outerIntersections[1]);
+    if (innerIntersections.Count() > 0)
+    {
+      intersections.Add(innerIntersections[0]);
+      intersections.Add(innerIntersections[1]);
+    }
+
+    if (outerIntersections.Count() > 0)
+    {
+      intersections.Add(outerIntersections[0]);
+      intersections.Add(outerIntersections[1]);
+    }
 
     List<Intersection> sortedIntersections = intersections
-      .OrderBy(i => i.t).ToList();
+   .OrderBy(i => i.t).ToList();
 
     return sortedIntersections;
   }
