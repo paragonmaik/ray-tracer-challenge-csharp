@@ -35,6 +35,15 @@ public class Scene
     return firstHit;
   }
 
+  public Color ShadeHit(Computations c)
+  {
+    return c.intersectedObject.Lighting(
+        c.point,
+        this.light,
+         c.eyeV, c.normalV
+        );
+  }
+
   public List<Intersection> IntersectWorld(Ray ray)
   {
     List<Intersection> intersections = new();

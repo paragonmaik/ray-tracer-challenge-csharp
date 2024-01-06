@@ -20,7 +20,8 @@ public abstract class IntersectableObject
   public abstract List<Intersection> Intersect(Ray ray);
   public abstract Vector NormalAt(Point point);
 
-  public Color Lighting(Point position, Light light, Vector eye, Vector normal, bool inShadow = false)
+  public Color Lighting(Point position, Light light,
+      Vector eye, Vector normal, bool inShadow = false)
   {
     Material material = this.material;
     Color temp = material.color;
@@ -31,7 +32,6 @@ public abstract class IntersectableObject
     Color specularColor;
 
     double lightDotNormal = lightVec.Dot(normal);
-
     if (lightDotNormal <= 0)
     {
       diffuseColor = new(0, 0, 0);
