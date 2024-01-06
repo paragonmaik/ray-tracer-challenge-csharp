@@ -44,6 +44,20 @@ public class Scene
         );
   }
 
+  public Color ColorAt(Ray ray)
+  {
+    List<Intersection> intersections = IntersectWorld(ray);
+    if (intersections.Count() == 0)
+    {
+      return new(0, 0, 0);
+    }
+
+    Intersection hit = Hit(intersections);
+    Computations c = new(hit, ray);
+
+    return ShadeHit(c);
+  }
+
   // TODO: rework after adding list that concatenates
   // all of the IntersectableObjects
   public List<Intersection> IntersectWorld(Ray ray)
@@ -67,7 +81,7 @@ public class Scene
     }
 
     List<Intersection> sortedIntersections = intersections
-   .OrderBy(i => i.t).ToList();
+    .OrderBy(i => i.t).ToList();
 
     return sortedIntersections;
   }
