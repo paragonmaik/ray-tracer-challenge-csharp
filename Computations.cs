@@ -1,28 +1,27 @@
 public class Computations
 {
   public double t;
-  public IntersectableObject intersectableObject;
+  public IntersectableObject intersectedObject;
   public Point point;
   public Vector eyeV;
   public Vector normalV;
 
-  public Computations(IntersectableObject intersectableObject)
+  public Computations(Intersection i, Ray ray)
   {
-    this.intersectableObject = intersectableObject;
-    this.t = 0f;
-    this.point = new();
-    this.eyeV = new();
-    this.normalV = new();
+    this.t = i.t;
+    this.intersectedObject = i.intersectedObj;
+    this.point = ray.Position(this.t);
+    this.eyeV = -ray.Direction();
+    this.normalV = i.intersectedObj.NormalAt(this.point);
   }
 
-  public Computations(
-      double t, IntersectableObject intersectableObject,
-      Point point, Vector eyeV, Vector normalV)
+  // TODO: remove
+  public void PrepareComputations(Intersection i, Ray ray)
   {
-    this.t = t;
-    this.intersectableObject = intersectableObject;
-    this.point = point;
-    this.eyeV = eyeV;
-    this.normalV = normalV;
+    this.t = i.t;
+    this.intersectedObject = i.intersectedObj;
+    this.point = ray.Position(this.t);
+    this.eyeV = -ray.Direction();
+    this.normalV = i.intersectedObj.NormalAt(this.point);
   }
 }
