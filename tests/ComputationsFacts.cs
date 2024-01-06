@@ -83,5 +83,42 @@ public class ComputationsFacts
 
       Assert.Equal(new(0.90498f, 0.90498f, 0.90498f), color);
     }
+
+    [Fact]
+    public void ValidateColorAtRayMiss()
+    {
+      Scene scene = new();
+      Ray ray = new(new(0, 0, -5), new(0, 1, 0));
+
+      Color actualColor = scene.ColorAt(ray);
+
+      Assert.Equal(new(0, 0, 0), actualColor);
+    }
+
+    [Fact]
+    public void ValidateColorRayHits()
+    {
+      Scene scene = new();
+      Ray ray = new(new(0, 0, -5), new(0, 0, 1));
+
+      Color actualColor = scene.ColorAt(ray);
+
+      Assert.Equal(new(
+            0.38066125f, 0.4758265f, 0.28549594f), actualColor);
+    }
+
+    [Fact]
+    public void ValidateColorAtRayHitBehindRay()
+    {
+      Scene scene = new();
+      scene.innerSphere.material.Ambient = 1f;
+      scene.outerSphere.material.Ambient = 1f;
+      Ray ray = new(new(0, 0, 0.75f), new(0, 0, -1));
+
+      Color actualColor = scene.ColorAt(ray);
+
+      Assert
+        .Equal(scene.outerSphere.material.color, actualColor);
+    }
   }
 }
