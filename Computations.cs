@@ -34,6 +34,7 @@ public class Computations
     if (this.normalV.Dot(this.eyeV) < 0)
     {
       this.inside = true;
+      this.normalV = -this.normalV;
     }
     else
     {
