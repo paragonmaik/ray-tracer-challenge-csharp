@@ -1,7 +1,25 @@
 public class Camera
 {
+  public int hsize;
+  public int vsize;
+  public double fov;
+  public Matrix tranform;
+
   public Camera()
   {
+    this.hsize = 160;
+    this.vsize = 120;
+    this.fov = Math.PI / 2;
+    this.tranform = new Matrix(4).Identity();
+  }
+
+  public Camera(int hsize, int vsize,
+      double fov)
+  {
+    this.hsize = hsize;
+    this.vsize = vsize;
+    this.fov = fov;
+    this.tranform = new Matrix(4).Identity();
   }
 
   public Matrix ViewTransform(
