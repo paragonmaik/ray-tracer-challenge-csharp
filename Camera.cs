@@ -69,4 +69,14 @@ public class Camera
   {
     get { return pixelSize; }
   }
+
+  public double HalfWidth
+  {
+    get { return halfWidth; }
+  }
+
+  public double HalfHeight
+  {
+    get { return halfHeight; }
+  }
 }
