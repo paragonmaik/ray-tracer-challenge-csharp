@@ -14,6 +14,19 @@ public class CameraFacts
       Assert.Equal(Math.PI / 2, cam.fov);
     }
 
+    [Theory]
+    [InlineData(200, 125, Math.PI / 2)]
+    [InlineData(125, 200, Math.PI / 2)]
+    public void ValidateCanvasPixelSize(
+        int hsize, int vsize, double fov
+        )
+    {
+      Camera cam = new(hsize, vsize, fov);
+
+      Assert.True(
+          Math.Abs(0.01f - cam.PixelSize) < 0.01);
+    }
+
     [Fact]
     public void ValidateDefaultMatrixOrientation()
     {
@@ -54,6 +67,7 @@ public class CameraFacts
       Point to = new(0, 0, 0);
       Vector up = new(0, 1, 0); Matrix expectedViewTransform = new Matrix(4).Translate(0, 0, -8); Matrix actualViewTransform = cam.ViewTransform(from, to, up); Assert.Equal(expectedViewTransform, actualViewTransform);
     }
+
     [Fact]
     public void ValidateArbitraryViewTransformation()
     {
