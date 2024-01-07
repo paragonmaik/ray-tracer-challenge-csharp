@@ -5,6 +5,16 @@ public class CameraFacts
   public class Cameras
   {
     [Fact]
+    public void ValidateCameraInstantiation()
+    {
+      Camera cam = new();
+
+      Assert.Equal(160, cam.hsize);
+      Assert.Equal(120, cam.vsize);
+      Assert.Equal(Math.PI / 2, cam.fov);
+    }
+
+    [Fact]
     public void ValidateDefaultMatrixOrientation()
     {
       Camera cam = new();
