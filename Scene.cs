@@ -102,6 +102,23 @@ public class Scene
     return new(origin, direction);
   }
 
+  public Canvas Render(Camera cam)
+  {
+    Canvas image = new(cam.hsize, cam.vsize);
+
+    for (int y = 0; y < cam.vsize; y++)
+    {
+      for (int x = 0; x < cam.hsize; x++)
+      {
+        Ray ray = RayForPixel(cam, x, y);
+        Color color = ColorAt(ray);
+        image.SetPixel(x, y, color);
+      }
+    }
+
+    return image;
+  }
+
   private void DefaultScene()
   {
     this.innerSphere = new();
