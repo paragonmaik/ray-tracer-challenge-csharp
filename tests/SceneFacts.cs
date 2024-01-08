@@ -73,5 +73,43 @@ public class SceneFacts
       Assert.Equal(expectedTIntersections[3],
                actualIntersections[3].t);
     }
+
+    [Fact]
+    public void ValidateRayThroughCenterOfCanvas()
+    {
+      Camera cam = new(201, 101, Math.PI / 2);
+      Scene scene = new();
+      Ray ray = scene.RayForPixel(cam, 100, 50);
+
+      Assert.Equal(new(0, 0, 0), ray.Origin());
+      Assert.Equal(new(9.94E-17f, 0.4454f, -0.8953f), ray.Direction());
+    }
+
+    [Fact]
+    public void ValidateRayThroughCornerOfCanvas()
+    {
+      Camera cam = new(201, 101, Math.PI / 2);
+      Scene scene = new();
+      Ray ray = scene.RayForPixel(cam, 0, 0);
+
+      Assert.Equal(new(0, 0, 0), ray.Origin());
+      Assert.Equal(new(0.5763f, 0.5763f, -0.5792f),
+          ray.Direction());
+    }
+
+    [Fact]
+    public void ValidateRayThroughCanvasWhenTransformedCamera()
+    {
+      Camera cam = new(201, 101, Math.PI / 2);
+      cam.transform = cam.transform
+        .RotateYAxis(Math.PI / 4) * cam.transform
+        .Translate(0, -2, 5);
+      Scene scene = new();
+      Ray ray = scene.RayForPixel(cam, 100, 50);
+
+      Assert.Equal(new(0, 2, -5), ray.Origin());
+      Assert.Equal(new(0.7071f / 2, 0, -0.7071f / 2),
+          ray.Direction());
+    }
   }
 }
