@@ -111,5 +111,21 @@ public class SceneFacts
       Assert.Equal(new(0.7071f / 2, 0, -0.7071f / 2),
           ray.Direction());
     }
+
+    [Fact]
+    public void ValidateSceneRender()
+    {
+      Scene scene = new();
+      Camera cam = new(11, 11, Math.PI / 2);
+      Point from = new(0, 0, -5);
+      Point to = new(0, 0, 0);
+      Vector up = new(0, 1, 0);
+      cam.transform = cam.ViewTransform(from, to, up);
+
+      Canvas image = scene.Render(cam);
+
+      Assert.Equal(new(0.38066f, 0.47583f, 0.2855f),
+          image.GetPixel(5, 5));
+    }
   }
 }
