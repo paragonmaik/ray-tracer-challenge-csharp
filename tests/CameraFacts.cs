@@ -65,7 +65,12 @@ public class CameraFacts
       Camera cam = new();
       Point from = new(0, 0, 0);
       Point to = new(0, 0, 0);
-      Vector up = new(0, 1, 0); Matrix expectedViewTransform = new Matrix(4).Translate(0, 0, -8); Matrix actualViewTransform = cam.ViewTransform(from, to, up); Assert.Equal(expectedViewTransform, actualViewTransform);
+      Vector up = new(0, 1, 0);
+      Matrix expectedViewTransform = new Matrix(4)
+        .Translate(0, 0, -8);
+      Matrix actualViewTransform = cam
+        .ViewTransform(from, to, up);
+      Assert.Equal(expectedViewTransform, actualViewTransform);
     }
 
     [Fact]
