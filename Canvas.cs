@@ -34,6 +34,11 @@ public class Canvas
     }
   }
 
+  public Color GetPixel(int x, int y)
+  {
+    return canvas[x, y];
+  }
+
   public void Save(string filename)
   {
     WritePPM(filename);
