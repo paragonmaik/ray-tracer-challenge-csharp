@@ -3,7 +3,7 @@ public class Camera
   public int hsize;
   public int vsize;
   public double fov;
-  public Matrix tranform;
+  public Matrix transform;
   private double pixelSize;
   private double halfWidth;
   private double halfHeight;
@@ -13,7 +13,7 @@ public class Camera
     this.hsize = 160;
     this.vsize = 120;
     this.fov = Math.PI / 2;
-    this.tranform = new Matrix(4).Identity();
+    this.transform = new Matrix(4).Identity();
     CalculatePixelSize();
   }
 
@@ -23,7 +23,7 @@ public class Camera
     this.hsize = hsize;
     this.vsize = vsize;
     this.fov = fov;
-    this.tranform = new Matrix(4).Identity();
+    this.transform = new Matrix(4).Identity();
     CalculatePixelSize();
   }
 
@@ -51,6 +51,7 @@ public class Camera
   {
     double halfView = Math.Tan(this.fov / 2);
     double aspect = this.hsize / this.vsize;
+
     if (aspect >= 1)
     {
       this.halfWidth = halfView;
@@ -61,7 +62,6 @@ public class Camera
       this.halfWidth = halfView * aspect;
       this.halfHeight = halfView;
     }
-
     this.pixelSize = (this.halfWidth * 2) / this.hsize;
   }
 
