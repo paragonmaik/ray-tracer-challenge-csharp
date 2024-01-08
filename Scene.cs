@@ -86,6 +86,22 @@ public class Scene
     return sortedIntersections;
   }
 
+  public Ray RayForPixel(Camera cam, int px, int py)
+  {
+    double xOffset = (px + 0.5) * cam.PixelSize;
+    double yOffset = (py + 0.5) * cam.PixelSize;
+
+    float worldX = (float)(cam.HalfWidth - xOffset);
+    float worldY = (float)(cam.HalfHeight - yOffset);
+
+    Point pixel = cam.transform
+      .Inverse() * new Point(worldX, worldY, -1);
+    Point origin = cam.transform.Inverse() * new Point(0, 0, 0);
+    Vector direction = (pixel - origin).Normalize();
+
+    return new(origin, direction);
+  }
+
   private void DefaultScene()
   {
     this.innerSphere = new();
