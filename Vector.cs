@@ -4,8 +4,8 @@ public class Vector : Tupl
   {
   }
 
-  public Vector(float x = 0f, float y = 0f,
-      float z = 0f, float w = 0f) : base(x, y, z, w)
+  public Vector(double x = 0, double y = 0,
+      double z = 0, double w = 0) : base(x, y, z, w)
   {
     this.w = 0f;
   }
