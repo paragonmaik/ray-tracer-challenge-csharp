@@ -18,10 +18,9 @@ public class Tupl
 
   public double Magnitude()
   {
-    double mag = Math.Sqrt(this.x * this.x +
-        this.y * this.y + this.z * this.z);
-
-    return (double)mag;
+    return Math.Sqrt(this.x * this.x +
+        this.y * this.y + this.z * this.z +
+        this.w * this.w);
   }
 
   public double Dot(Tupl b)
