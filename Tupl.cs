@@ -1,14 +1,14 @@
 public class Tupl
 {
-  public float x;
-  public float y;
-  public float z;
-  public float w;
+  public double x;
+  public double y;
+  public double z;
+  public double w;
 
   public Tupl()
   {
   }
-  public Tupl(float x, float y, float z, float w)
+  public Tupl(double x, double y, double z, double w)
   {
     this.x = x;
     this.y = y;
