@@ -1,13 +1,13 @@
 public class Vector : Tupl
 {
-  public Vector() : base(0f, 0f, 0f, 0f)
+  public Vector() : base(0, 0, 0, 0)
   {
   }
 
   public Vector(double x = 0, double y = 0,
       double z = 0, double w = 0) : base(x, y, z, w)
   {
-    this.w = 0f;
+    this.w = 0;
   }
 
   public static Vector operator +(Vector a, Vector b)
@@ -72,7 +72,10 @@ public class Vector : Tupl
 
   public Vector Normalize()
   {
-    float magnitude = (float)Magnitude();
+    double magnitude = Magnitude();
+
+    if (magnitude == 0) return new();
+
     this.x = this.x / magnitude;
     this.y = this.y / magnitude;
     this.z = this.z / magnitude;

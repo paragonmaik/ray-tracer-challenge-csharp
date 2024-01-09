@@ -8,6 +8,7 @@ public class Tupl
   public Tupl()
   {
   }
+
   public Tupl(double x, double y, double z, double w)
   {
     this.x = x;
