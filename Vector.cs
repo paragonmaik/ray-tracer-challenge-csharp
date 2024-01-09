@@ -52,6 +52,15 @@ public class Vector : Tupl
     a.w * b);
   }
 
+  public static Vector operator *(Vector a, double b)
+  {
+    return new Vector(
+    a.x * b,
+    a.y * b,
+    a.z * b,
+    a.w * b);
+  }
+
   public static Vector operator /(Vector a, float b)
   {
     return new Vector(
@@ -95,7 +104,7 @@ public class Vector : Tupl
 
   public Vector Reflect(Vector incoming, Vector normal)
   {
-    return incoming - normal * 2 * (float)incoming.Dot(normal);
+    return incoming - normal * 2 * incoming.Dot(normal);
   }
 }
 

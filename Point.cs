@@ -1,11 +1,11 @@
 public class Point : Tupl
 {
-  public Point() : base(0f, 0f, 0f, 1f)
+  public Point() : base(0, 0, 0, 1)
   {
   }
 
-  public Point(float x = 0f, float y = 0f,
-      float z = 0f, float w = 1f) : base(x, y, z, w)
+  public Point(double x = 0, double y = 0,
+      double z = 0, double w = 1) : base(x, y, z, w)
   {
     this.w = 1f;
   }
