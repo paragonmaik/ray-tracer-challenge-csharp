@@ -66,10 +66,10 @@ public class Matrix
     }
 
     return new Tupl(
-        (float)temp[0],
-        (float)temp[1],
-        (float)temp[2],
-        (float)temp[3]
+        temp[0],
+        temp[1],
+        temp[2],
+        temp[3]
         );
   }
 
@@ -89,10 +89,10 @@ public class Matrix
     }
 
     return new Vector(
-        (float)temp[0],
-        (float)temp[1],
-        (float)temp[2],
-        (float)temp[3]
+        temp[0],
+        temp[1],
+        temp[2],
+        temp[3]
         );
   }
 
@@ -112,10 +112,10 @@ public class Matrix
     }
 
     return new Point(
-        (float)temp[0],
-        (float)temp[1],
-        (float)temp[2],
-        (float)temp[3]
+        temp[0],
+        temp[1],
+        temp[2],
+        temp[3]
         );
   }
 
