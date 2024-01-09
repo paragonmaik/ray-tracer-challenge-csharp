@@ -1,14 +1,14 @@
 public class Color
 {
-  public float red;
-  public float green;
-  public float blue;
+  public double red;
+  public double green;
+  public double blue;
 
   public Color()
   { }
 
-  public Color(float red = 0f, float green = 0f,
-      float blue = 0f)
+  public Color(double red = 0f, double green = 0f,
+      double blue = 0f)
   {
     this.red = red;
     this.green = green;
