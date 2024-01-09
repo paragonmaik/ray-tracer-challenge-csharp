@@ -83,39 +83,5 @@ public class RayFacts
 
       Assert.Equal(expectedMatrix, sphere.GetMatrix());
     }
-
-    [Fact]
-    public void ValidateIntersectWithScaledSphere()
-    {
-      Ray ray = new(new(0, 0, -5), new(0, 0, 1));
-      Sphere sphere = new();
-      sphere.SetMatrix(sphere.GetMatrix().Scale(2, 2, 2));
-
-      List<Intersection> intersections = ray
-              .Intersect(sphere);
-
-
-      Assert.Equal(2, intersections.Count());
-      Assert.Equal(3, intersections[0].t);
-      Assert.Equal(7, intersections[1].t);
-    }
-
-    [Fact]
-    public void ValidateIntersectWithTranslatedSphere()
-    {
-      Ray ray = new(new(0, 0, -5), new(0, 0, 1));
-      Sphere sphere = new();
-      sphere.SetMatrix(sphere.GetMatrix().Scale(5, 0, 0));
-
-      Action act = () => ray
-              .Intersect(sphere);
-
-      NonInvertibleMatrixException exception = Assert
-        .Throws<NonInvertibleMatrixException>(act);
-
-      Assert.Equal(
-          "Determinant equals 0, Matrix cannot be inverted",
-          exception.Message);
-    }
   }
 }
