@@ -82,7 +82,7 @@ public class Canvas
     return header;
   }
 
-  private int NormalizeColor(float colorVal, int max, int min = 0)
+  private int NormalizeColor(double colorVal, int max, int min = 0)
   {
     int normalizedValue = (int)colorVal * max;
 
