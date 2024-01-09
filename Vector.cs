@@ -42,16 +42,6 @@ public class Vector : Tupl
         );
   }
 
-  // TODO: retype float to double
-  public static Vector operator *(Vector a, float b)
-  {
-    return new Vector(
-    a.x * b,
-    a.y * b,
-    a.z * b,
-    a.w * b);
-  }
-
   public static Vector operator *(Vector a, double b)
   {
     return new Vector(
@@ -82,8 +72,6 @@ public class Vector : Tupl
   public Vector Normalize()
   {
     double magnitude = Magnitude();
-
-    if (magnitude == 0) return new();
 
     this.x = this.x / magnitude;
     this.y = this.y / magnitude;
