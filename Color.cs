@@ -42,7 +42,7 @@ public class Color
         );
   }
 
-  public static Color operator *(Color a, float b)
+  public static Color operator *(Color a, double b)
   {
     return new(
         a.red * b,
