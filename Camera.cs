@@ -23,17 +23,24 @@ public class Camera
     this.hsize = hsize;
     this.vsize = vsize;
     this.fov = fov;
-    this.transform = new Matrix(4).Identity();
+    transform = new Matrix(4);
     CalculatePixelSize();
   }
 
-  public Matrix ViewTransform(
-      Point from, Point to, Vector up)
+  public Matrix ViewTransform(Point from, Point to, Vector up)
   {
+    up = up.Normalize();
     Vector forward = (to - from).Normalize();
-    Vector upN = up.Normalize();
-    Vector left = forward.Cross(upN);
+    if (double.IsNaN(forward.x))
+      Console.WriteLine("Bad Forward Vector in Camera's View Transform.");
+
+    Vector left = forward.Cross(up);
+    if (double.IsNaN(left.x))
+      Console.WriteLine("Bad Left Vector in Camera's View Transform.");
+
     Vector trueUp = left.Cross(forward);
+    if (double.IsNaN(trueUp.x))
+      Console.WriteLine("Bad Up Vector in Camera's View Transform.");
 
     Matrix orientation = new(new double[4, 4]{
       { left.x, left.y, left.z, 0},
