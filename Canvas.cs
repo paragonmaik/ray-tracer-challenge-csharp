@@ -59,7 +59,7 @@ public class Canvas
       {
         for (int x = 0; x < height; x++)
         {
-          Color currentPixel = canvas[x, y];
+          Color currentPixel = GetPixel(x, y);
           string red = NormalizeColor(currentPixel.red, 255).ToString();
           string green = NormalizeColor(currentPixel.green, 255).ToString();
           string blue = NormalizeColor(currentPixel.blue, 255).ToString();
