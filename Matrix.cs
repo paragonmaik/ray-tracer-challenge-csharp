@@ -23,7 +23,10 @@ public class Matrix
     ValidateMatrixLength();
   }
 
-  public int GetSize() { return size; }
+  public int GetSize()
+  {
+    return size;
+  }
 
   public double this[int i, int j]
   {
@@ -65,12 +68,7 @@ public class Matrix
       }
     }
 
-    return new Tupl(
-        temp[0],
-        temp[1],
-        temp[2],
-        temp[3]
-        );
+    return new Tupl(temp[0], temp[1], temp[2], temp[3]);
   }
 
   public static Vector operator *(Matrix a, Vector b)
@@ -88,12 +86,7 @@ public class Matrix
       }
     }
 
-    return new Vector(
-        temp[0],
-        temp[1],
-        temp[2],
-        temp[3]
-        );
+    return new Vector(temp[0], temp[1], temp[2], temp[3]);
   }
 
   public static Point operator *(Matrix a, Point b)
@@ -111,12 +104,7 @@ public class Matrix
       }
     }
 
-    return new Point(
-        temp[0],
-        temp[1],
-        temp[2],
-        temp[3]
-        );
+    return new Point(temp[0], temp[1], temp[2], temp[3]);
   }
 
   public Matrix Translate(double x, double y, double z)
@@ -232,11 +220,7 @@ public class Matrix
     return mat;
   }
 
-  public Matrix Shear(
-      double xy, double xz,
-      double yx, double yz,
-      double zx, double zy
-      )
+  public Matrix Shear(double xy, double xz, double yx, double yz, double zx, double zy)
   {
     Matrix mat = new Matrix(this).Identity();
 
@@ -351,11 +335,13 @@ public class Matrix
     {
       int j = 0;
 
-      if (r == row) continue;
+      if (r == row)
+        continue;
 
       for (var c = 0; c < size; c++)
       {
-        if (c == column) continue;
+        if (c == column)
+          continue;
 
         submatrix[i, j] = this[r, c];
         j++;
@@ -374,7 +360,7 @@ public class Matrix
     {
       throw new NonInvertibleMatrixException(
           "Determinant equals 0, Matrix cannot be inverted"
-          );
+      );
     }
     Matrix retVal = new(size);
     Matrix a = new(this);
@@ -421,23 +407,18 @@ public class Matrix
 
     for (int r = 0; r < size; r++)
     {
-      matrixString
-          .Append("| ");
+      matrixString.Append("| ");
       for (int c = 0; c < size; c++)
       {
         if (c != 0)
         {
-          matrixString
-            .Append(" | ")
-            .Append(Math.Round(this[r, c], 5));
+          matrixString.Append(" | ").Append(Math.Round(this[r, c], 5));
 
           continue;
         }
         matrixString.Append(Math.Round(this[r, c], 5));
       }
-      matrixString
-        .Append(" |")
-        .AppendLine();
+      matrixString.Append(" |").AppendLine();
     }
 
     return matrixString.ToString().Replace("-0 ", "0 ");
@@ -456,8 +437,8 @@ public class Matrix
     {
       for (int c = 0; c < size; c++)
       {
-        if ((Math.Abs(this[r, c])
-              - Math.Abs(matB[r, c])) > 0.001f) return false;
+        if ((Math.Abs(this[r, c]) - Math.Abs(matB[r, c])) > 0.001f)
+          return false;
       }
     }
 
