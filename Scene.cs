@@ -91,12 +91,13 @@ public class Scene
     double xOffset = (px + 0.5) * cam.PixelSize;
     double yOffset = (py + 0.5) * cam.PixelSize;
 
-    float worldX = (float)(cam.HalfWidth - xOffset);
-    float worldY = (float)(cam.HalfHeight - yOffset);
+    double worldX = cam.HalfWidth - xOffset;
+    double worldY = cam.HalfHeight - yOffset;
 
     Point pixel = cam.transform
       .Inverse() * new Point(worldX, worldY, -1);
-    Point origin = cam.transform.Inverse() * new Point(0, 0, 0);
+    Point origin = cam.transform
+      .Inverse() * new Point(0, 0, 0);
     Vector direction = (pixel - origin).Normalize();
 
     return new(origin, direction);
