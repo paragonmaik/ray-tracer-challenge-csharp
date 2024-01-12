@@ -23,7 +23,7 @@ public class Camera
     this.hsize = hsize;
     this.vsize = vsize;
     this.fov = fov;
-    transform = new Matrix(4);
+    transform = new Matrix(4).Identity();
     CalculatePixelSize();
   }
 
