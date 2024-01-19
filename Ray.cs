@@ -1,4 +1,4 @@
-public class Ray
+﻿public class Ray
 {
   private Point origin;
   private Vector direction;
@@ -9,14 +9,21 @@ public class Ray
     this.direction = direction;
   }
 
+  public static Ray Transform(Ray ray, Matrix mat)
+  {
+    Ray temp;
+    temp = ray * mat;
+    return temp;
+  }
+
   public Point Position(double t)
   {
-    return this.origin + this.direction * t;
+    return this.origin + (this.direction * t);
   }
 
   public static Ray operator *(Ray r, Matrix mat)
   {
-    Ray tempRay = new(r.origin, r.direction);
+    Ray tempRay = new Ray(r.origin, r.direction);
 
     tempRay.origin = mat * r.origin;
     tempRay.direction = mat * r.direction;
@@ -29,6 +36,7 @@ public class Ray
 
   public override string ToString()
   {
-    return $"Ray's origin: {this.origin}, Ray's direction: {this.direction}";
+    return $"Ray's origin: {this
+      .origin}, Ray's direction: {this.direction}";
   }
 }
