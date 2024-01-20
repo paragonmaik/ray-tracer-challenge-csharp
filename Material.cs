@@ -1,22 +1,34 @@
-﻿public class RefractiveIndex
-{
-  public const double Vacuum = 1.0;
-  public const double Air = 1.00029;
-  public const double Water = 1.333;
-  public const double Glass = 1.52;
-  public const double Diamond = 2.417;
-}
-
-public class Material
+﻿public class Material
 {
   public Color color;
   double ambient;
   double diffuse;
   double specular;
   double shinniness;
-  double reflective;
-  double refractiveIndex;
-  double transparency;
+
+  public Material()
+  {
+    color = new Color(1, 1, 1);
+    ambient = 0.1;
+    diffuse = 0.9;
+    specular = 0.9;
+    shinniness = 200;
+  }
+
+  public Material(
+    Color color,
+    double ambient = 0.1,
+    double diffuse = 0.9,
+    double specular = 0.9,
+    double shinniness = 200.0
+  )
+  {
+    this.color = color;
+    Ambient = ambient;
+    Diffuse = diffuse;
+    Specular = specular;
+    Shinniness = shinniness;
+  }
 
   public double Ambient
   {
@@ -74,90 +86,6 @@ public class Material
     }
   }
 
-  public double Reflective
-  {
-    get { return reflective; }
-    set
-    {
-      if (value < 0.0)
-      {
-        value = 0.0;
-      }
-
-      if (value > 1.0)
-      {
-        value = 1.0;
-      }
-
-      reflective = value;
-    }
-  }
-
-  public double RefracIndex
-  {
-    get { return refractiveIndex; }
-    set
-    {
-
-      refractiveIndex = value;
-    }
-  }
-
-  public double Transparency
-  {
-    get { return transparency; }
-    set
-    {
-      if (value < 0.0)
-      {
-        value = 0.0;
-      }
-
-      if (value > 1.0)
-      {
-        value = 1.0;
-      }
-
-      transparency = value;
-    }
-  }
-
-  public Material()
-  {
-    color = new Color(1, 1, 1);
-    ambient = 0.1;
-    diffuse = 0.9;
-    specular = 0.9;
-    shinniness = 200;
-    transparency = 0.0;
-    RefracIndex = RefractiveIndex.Air;
-  }
-
-  public Material(
-    Color color,
-    double ambient = 0.1,
-    double diffuse = 0.9,
-    double specular = 0.9,
-    double shinniness = 200.0,
-    double transparency = 0.0,
-    double refractiveIndex = RefractiveIndex.Air
-  )
-  {
-    this.color = color;
-    Ambient = ambient;
-    Diffuse = diffuse;
-    Specular = specular;
-    Shinniness = shinniness;
-    Transparency = transparency;
-    RefracIndex = refractiveIndex;
-  }
-
-  public void Glassy()
-  {
-    this.transparency = 1.0;
-    this.refractiveIndex = RefractiveIndex.Glass;
-  }
-
   public override string ToString()
   {
     return "Material-> Color: "
@@ -169,11 +97,7 @@ public class Material
       + " Specular: "
       + specular.ToString()
       + " Shinniness: "
-      + shinniness.ToString()
-      + " Transparency: "
-      + transparency.ToString()
-      + " Refractive Index: "
-      + refractiveIndex.ToString();
+      + shinniness.ToString();
   }
 
   public override bool Equals(object? obj)
@@ -197,9 +121,7 @@ public class Material
       && Ambient == material.Ambient
       && Diffuse == material.Diffuse
       && Specular == material.Specular
-      && Shinniness == material.Shinniness
-      && RefracIndex == material.RefracIndex
-      && Transparency == material.Transparency; // &&
+      && Shinniness == material.Shinniness;
   }
 
   public override int GetHashCode()
