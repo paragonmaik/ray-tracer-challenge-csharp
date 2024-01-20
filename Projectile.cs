@@ -1,4 +1,4 @@
-public class Projectile
+﻿public class Projectile
 {
   public Point position;
   public Vector velocity;
