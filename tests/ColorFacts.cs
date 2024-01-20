@@ -13,9 +13,9 @@ public class ColorFacts
 
       Color color = new(0.2f, 1, 0.7f);
 
-      Assert.Equal(red, color.red);
-      Assert.Equal(green, color.green);
-      Assert.Equal(blue, color.blue);
+      Assert.Equal(red, color.r);
+      Assert.Equal(green, color.g);
+      Assert.Equal(blue, color.b);
     }
 
     [Fact]
@@ -27,9 +27,9 @@ public class ColorFacts
 
       Color resultColor = colorA + colorB;
 
-      Assert.Equal(expectedColor.red, resultColor.red, 4);
-      Assert.Equal(expectedColor.green, resultColor.green, 4);
-      Assert.Equal(expectedColor.blue, resultColor.blue, 4);
+      Assert.Equal(expectedColor.r, resultColor.r, 4);
+      Assert.Equal(expectedColor.g, resultColor.g, 4);
+      Assert.Equal(expectedColor.b, resultColor.b, 4);
     }
 
     [Fact]
@@ -41,9 +41,9 @@ public class ColorFacts
 
       Color resultColor = colorA - colorB;
 
-      Assert.Equal(expectedColor.red, resultColor.red, 4);
-      Assert.Equal(expectedColor.green, resultColor.green, 4);
-      Assert.Equal(expectedColor.blue, resultColor.blue, 4);
+      Assert.Equal(expectedColor.r, resultColor.r, 4);
+      Assert.Equal(expectedColor.g, resultColor.g, 4);
+      Assert.Equal(expectedColor.b, resultColor.b, 4);
     }
 
     [Fact]
@@ -55,25 +55,23 @@ public class ColorFacts
 
       Color resultColor = colorA * colorB;
 
-      Assert.Equal(expectedColor.red, resultColor.red, 4);
-      Assert.Equal(expectedColor.green, resultColor.green, 4);
-      Assert.Equal(expectedColor.blue, resultColor.blue, 4);
+      Assert.Equal(expectedColor.r, resultColor.r, 4);
+      Assert.Equal(expectedColor.g, resultColor.g, 4);
+      Assert.Equal(expectedColor.b, resultColor.b, 4);
     }
 
     [Fact]
     public void MultiplyColorByScalar()
     {
-
       Color expectedColor = new(0.2f, 2, 0.6f);
       Color colorA = new(0.1f, 1, 0.3f);
       float scalar = 2f;
 
       Color resultColor = colorA * scalar;
 
-      Assert.Equal(expectedColor.red, resultColor.red, 4);
-      Assert.Equal(expectedColor.green, resultColor.green, 4);
-      Assert.Equal(expectedColor.blue, resultColor.blue, 4);
+      Assert.Equal(expectedColor.r, resultColor.r, 4);
+      Assert.Equal(expectedColor.g, resultColor.g, 4);
+      Assert.Equal(expectedColor.b, resultColor.b, 4);
     }
   }
 }
-
