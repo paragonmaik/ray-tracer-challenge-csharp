@@ -15,6 +15,7 @@ public class Matrix
   {
     this.size = size;
     this.values = new double[size, size];
+    this.Identity();
   }
 
   public Matrix(double[,] values)
@@ -43,17 +44,18 @@ public class Matrix
     {
       for (int c = 0; c < size; c++)
       {
-        for (int q = 0; q < size; q++)
-        {
-          mat[r, c] += a[r, q] * b[q, c];
-        }
+        mat[r, c] =
+          a[r, 0] * b[0, c]
+          + a[r, 1] * b[1, c]
+          + a[r, 2] * b[2, c]
+          + a[r, 3] * b[3, c];
       }
     }
 
     return mat;
   }
 
-  public static Tupl operator *(Matrix a, Tupl b)
+  public static Tuple operator *(Matrix a, Tuple b)
   {
     // TODO: fix 2x2 multiplication bug
     int size = a.GetSize();
@@ -68,7 +70,7 @@ public class Matrix
       }
     }
 
-    return new Tupl(temp[0], temp[1], temp[2], temp[3]);
+    return new Tuple(temp[0], temp[1], temp[2], temp[3]);
   }
 
   public static Vector operator *(Matrix a, Vector b)
@@ -147,7 +149,7 @@ public class Matrix
 
   public Matrix Translate(Vector vector)
   {
-    Matrix mat = new Matrix(this).Identity();
+    Matrix mat = new Matrix(this);
 
     if (mat.GetSize() == 2)
     {
@@ -201,8 +203,8 @@ public class Matrix
     Matrix mat = new Matrix(this).Identity();
 
     mat[0, 0] = Math.Cos(y);
-    mat[2, 0] = Math.Sin(y) * -1.0;
     mat[0, 2] = Math.Sin(y);
+    mat[2, 0] = Math.Sin(y) * -1.0;
     mat[2, 2] = Math.Cos(y);
 
     return mat;
@@ -220,7 +222,14 @@ public class Matrix
     return mat;
   }
 
-  public Matrix Shear(double xy, double xz, double yx, double yz, double zx, double zy)
+  public Matrix Shear(
+    double xy,
+    double xz,
+    double yx,
+    double yz,
+    double zx,
+    double zy
+  )
   {
     Matrix mat = new Matrix(this).Identity();
 
@@ -303,7 +312,8 @@ public class Matrix
 
     if (size == 2)
     {
-      determinant = this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
+      determinant =
+        this[0, 0] * this[1, 1] - this[0, 1] * this[1, 0];
     }
     else
     {
@@ -359,9 +369,10 @@ public class Matrix
     if (determinant == 0f)
     {
       throw new NonInvertibleMatrixException(
-          "Determinant equals 0, Matrix cannot be inverted"
+        "Determinant equals 0, Matrix cannot be inverted"
       );
     }
+
     Matrix retVal = new(size);
     Matrix a = new(this);
 
@@ -381,7 +392,9 @@ public class Matrix
   {
     if (values.GetLength(0) != values.GetLength(1))
     {
-      throw new ArgumentNullException("Height and width should have the same length.");
+      throw new InvalidMatrixSizeException(
+        "Height and width should have the same length."
+      );
     }
     this.size = values.GetLength(0);
   }
@@ -412,11 +425,13 @@ public class Matrix
       {
         if (c != 0)
         {
-          matrixString.Append(" | ").Append(Math.Round(this[r, c], 5));
+          matrixString
+            .Append(" | ")
+            .Append(Math.Round(this[r, c], 2));
 
           continue;
         }
-        matrixString.Append(Math.Round(this[r, c], 5));
+        matrixString.Append(Math.Round(this[r, c], 2));
       }
       matrixString.Append(" |").AppendLine();
     }
@@ -437,7 +452,9 @@ public class Matrix
     {
       for (int c = 0; c < size; c++)
       {
-        if ((Math.Abs(this[r, c]) - Math.Abs(matB[r, c])) > 0.001f)
+        if (
+          (Math.Abs(this[r, c]) - Math.Abs(matB[r, c])) > 0.001f
+        )
           return false;
       }
     }
