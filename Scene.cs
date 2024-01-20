@@ -1,89 +1,123 @@
-public class Scene
+﻿public class Scene
 {
-  // TODO: add list that concatenates all IntersectableObjects
-  // iterate through all of them to invoke the Intersect
-  // method passed to the IntersectWorld method
-  public Light light;
-  public Sphere innerSphere;
-  public Sphere outerSphere;
+  public static Scene current = null;
+  public IntersectableObjs objects;
+  private List<Light> lights;
+  private List<IntersectableObject> rayObjects;
 
   public Scene()
   {
-    this.light = new(new(1, 1, 1), new(-10, 10, -10));
-    this.innerSphere = new();
-    this.outerSphere = new();
-    DefaultScene();
+    if (current == null)
+    {
+      current = this;
+      new Random();
+    }
+
+    lights = new List<Light>();
+    rayObjects = new List<IntersectableObject>();
+    objects = new IntersectableObjs();
+    Default();
+  }
+
+  public List<Light> GetLights()
+  {
+    return lights;
+  }
+
+  public List<IntersectableObject> GetRayObjects()
+  {
+    return rayObjects;
+  }
+
+  public void ClearRayObjects()
+  {
+    rayObjects = new List<IntersectableObject>();
+    objects = new IntersectableObjs();
+  }
+
+  public void ClearLights()
+  {
+    lights = new List<Light>();
+  }
+
+  public void Clear()
+  {
+    ClearRayObjects();
+    ClearLights();
+  }
+
+  public void AddLight(Light light)
+  {
+    lights.Add(light);
+  }
+
+  public void AddRayObject(IntersectableObject rayObject)
+  {
+    rayObjects.Add(rayObject);
+  }
+
+  public List<Intersection> Intersections(Ray ray)
+  {
+    List<Intersection> intersections = new List<Intersection>();
+
+    intersections = objects.Intersect(ray);
+
+    return Intersection.SortIntersections(intersections);
   }
 
   public Intersection Hit(List<Intersection> intersections)
   {
+    intersections = Intersection.SortIntersections(
+      intersections
+    );
     if (intersections.Count == 0)
     {
       return null;
     }
 
-    Intersection firstHit = null;
-
-    foreach (var inter in intersections)
+    Intersection first = null;
+    for (int i = 0; i < intersections.Count; i++)
     {
-      if (inter.t < 0.0f) continue;
-
-      firstHit = inter;
-      break;
+      if (intersections[i].t < 0.0)
+      {
+        continue;
+      }
+      else
+      {
+        first = intersections[i];
+        break;
+      }
     }
 
-    return firstHit;
+    return first;
   }
 
   public Color ShadeHit(Computations c)
   {
-    return c.intersectedObject.Lighting(
-        c.point,
-        this.light,
-         c.eyeV, c.normalV
-        );
+    return c.rayObject.Lighting(
+      c.point,
+      this.lights[0],
+      c.eye,
+      c.normal
+    );
   }
 
-  public Color ColorAt(Ray ray)
+  public Color ColorAt(Ray ray, int remaining = 1)
   {
-    List<Intersection> intersections = IntersectWorld(ray);
+    List<Intersection> intersections = this.Intersections(ray);
     if (intersections.Count() == 0)
     {
-      return new(0, 0, 0);
+      return new();
     }
 
-    Intersection hit = Hit(intersections);
-    Computations c = new(hit, ray);
+    Intersection hit = this.Hit(intersections);
+    Computations c = Computations.Prepare(
+      hit,
+      ray,
+      intersections
+    );
 
-    return ShadeHit(c);
-  }
-
-  // TODO: rework after adding list that concatenates
-  // all of the IntersectableObjects
-  public List<Intersection> IntersectWorld(Ray ray)
-  {
-    List<Intersection> intersections = new();
-    List<Intersection> innerIntersections = innerSphere
-      .Intersect(ray);
-    List<Intersection> outerIntersections = outerSphere
-      .Intersect(ray);
-
-    if (innerIntersections.Count() > 0)
-    {
-      intersections.Add(innerIntersections[0]);
-      intersections.Add(innerIntersections[1]);
-    }
-
-    if (outerIntersections.Count() > 0)
-    {
-      intersections.Add(outerIntersections[0]);
-      intersections.Add(outerIntersections[1]);
-    }
-
-    List<Intersection> sortedIntersections = intersections
-    .OrderBy(i => i.t).ToList();
-
-    return sortedIntersections;
+    return Scene.current.ShadeHit(c);
   }
 
   public Ray RayForPixel(Camera cam, int px, int py)
@@ -94,10 +128,9 @@ public class Scene
     double worldX = cam.HalfWidth - xOffset;
     double worldY = cam.HalfHeight - yOffset;
 
-    Point pixel = cam.transform
-      .Inverse() * new Point(worldX, worldY, -1);
-    Point origin = cam.transform
-      .Inverse() * new Point(0, 0, 0);
+    Point pixel =
+      cam.transform.Inverse() * new Point(worldX, worldY, -1);
+    Point origin = cam.transform.Inverse() * new Point(0, 0, 0);
     Vector direction = (pixel - origin).Normalize();
 
     return new(origin, direction);
@@ -105,33 +138,33 @@ public class Scene
 
   public Canvas Render(Camera cam)
   {
-    Canvas image = new(cam.hsize, cam.vsize);
+    Canvas image = new Canvas(cam.hSize, cam.vSize);
 
-    for (int y = 0; y < cam.vsize; y++)
+    for (int y = 0; y < cam.vSize; y++)
     {
-      for (int x = 0; x < cam.hsize; x++)
+      for (int x = 0; x < cam.hSize; x++)
       {
-        Ray ray = RayForPixel(cam, x, y);
-        Color color = ColorAt(ray);
-        image.SetPixel(x, y, color);
+        Ray temp = this.RayForPixel(cam, x, y);
+        Color pixelColor = this.ColorAt(temp);
+        image.SetPixel(x, y, pixelColor);
       }
     }
-
     return image;
   }
 
-  private void DefaultScene()
+  public void Default()
   {
-    this.innerSphere = new();
-    Material mat = new(new(0.8f, 1, 0.6f));
+    this.Clear();
+    Light light = new Light(
+      new Point(-10, 10, -10),
+      new Color(1, 1, 1)
+    );
+    Sphere s1 = new Sphere();
+    Sphere s2 = new Sphere();
 
-    mat.Diffuse = 0.7f;
-    mat.Specular = 0.2f;
-    innerSphere.material = mat;
-
-    this.outerSphere
-      .SetMatrix(this.outerSphere
-      .GetMatrix()
-      .Scale(0.5f, 0.5f, 0.5f));
+    s1.material = new Material(new Color(0.8, 1.0, 0.6));
+    s1.material.Diffuse = 0.7;
+    s1.material.Specular = 0.2;
+    s2.SetMatrix(new Matrix(4).Scale(0.5, 0.5, 0.5));
   }
 }
