@@ -1,4 +1,4 @@
-public class Environment
+﻿public class Environment
 {
   public Vector gravity;
   public Vector wind;
