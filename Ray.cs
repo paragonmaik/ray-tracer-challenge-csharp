@@ -31,8 +31,15 @@
     return tempRay;
   }
 
-  public Point Origin() { return this.origin; }
-  public Vector Direction() { return this.direction; }
+  public Point Origin()
+  {
+    return this.origin;
+  }
+
+  public Vector Direction()
+  {
+    return this.direction;
+  }
 
   public override string ToString()
   {
