@@ -10,7 +10,6 @@
     if (current == null)
     {
       current = this;
-      new Random();
     }
 
     lights = new List<Light>();
@@ -70,15 +69,12 @@
     intersections = Intersection.SortIntersections(
       intersections
     );
-    if (intersections.Count == 0)
-    {
-      return null;
-    }
 
     Intersection first = null;
+
     for (int i = 0; i < intersections.Count; i++)
     {
-      if (intersections[i].t < 0.0)
+      if (intersections[i].t < 0)
       {
         continue;
       }
@@ -94,7 +90,7 @@
 
   public Color ShadeHit(Computations c)
   {
-    return c.rayObject.Lighting(
+    return c.intersectableObj.Lighting(
       c.point,
       this.lights[0],
       c.eye,
