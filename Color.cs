@@ -1,81 +1,76 @@
-public class Color
+﻿public class Color
 {
-  public double red;
-  public double green;
-  public double blue;
+  public double r;
+  public double g;
+  public double b;
 
-  public Color()
-  { }
-
-  public Color(double red = 0f, double green = 0f,
-      double blue = 0f)
+  public Color(Color color)
   {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
+    this.r = color.r;
+    this.g = color.g;
+    this.b = color.b;
   }
 
-  public static Color operator +(Color a, Color b)
+  public Color(double r = 0.0, double g = 0.0, double b = 0.0)
   {
-    return new(
-        a.red + b.red,
-        a.green + b.green,
-        a.blue + b.blue
-        );
+    this.r = r;
+    this.g = g;
+    this.b = b;
   }
 
   public static Color operator -(Color a, Color b)
   {
-    return new(
-        a.red - b.red,
-        a.green - b.green,
-        a.blue - b.blue
-        );
-  }
-
-  public static Color operator *(Color a, Color b)
-  {
-    return new(
-        a.red * b.red,
-        a.green * b.green,
-        a.blue * b.blue
-        );
+    Color temp = new Color();
+    temp.r = a.r - b.r;
+    temp.g = a.g - b.g;
+    temp.b = a.b - b.b;
+    return temp;
   }
 
   public static Color operator *(Color a, double b)
   {
-    return new(
-        a.red * b,
-        a.green * b,
-        a.blue * b
-        );
+    Color temp = new Color();
+    temp.r = a.r * b;
+    temp.g = a.g * b;
+    temp.b = a.b * b;
+    return temp;
+  }
+
+  public static Color operator *(double a, Color b)
+  {
+    Color temp = new Color();
+    temp.r = b.r * a;
+    temp.g = b.g * a;
+    temp.b = b.b * a;
+    return temp;
+  }
+
+  public static Color operator *(Color a, Color b)
+  {
+    Color temp = new Color();
+    temp.r = a.r * b.r;
+    temp.g = a.g * b.g;
+    temp.b = a.b * b.b;
+    return temp;
+  }
+
+  public static Color operator +(Color a, Color b)
+  {
+    Color temp = new Color();
+    temp.r = a.r + b.r;
+    temp.g = a.g + b.g;
+    temp.b = a.b + b.b;
+    return temp;
   }
 
   public override bool Equals(object? obj)
   {
-    if (obj == null)
-    {
-      return false;
-    }
+    var color = obj as Color;
 
-    Color color = (Color)obj;
-
-    if (Math.Abs(this.red - color.red) > 0.0001f)
-    {
-      return false;
-    }
-
-    if (Math.Abs(this.green - color.green) > 0.0001f)
-    {
-      return false;
-    }
-
-    if (Math.Abs(this.blue - color.blue) > 0.0001f)
-    {
-      return false;
-    }
-
-    return true;
+    return color != null
+      && Utility.FE(r, color.r)
+      && Utility.FE(g, color.g)
+      && Utility.FE(b, color.b);
   }
 
   public override int GetHashCode()
@@ -85,6 +80,6 @@ public class Color
 
   public override string ToString()
   {
-    return $"Red: {this.red}, Green: {this.green}, Blue: {this.blue}";
+    return $"Red: {this.r}, Green: {this.g}, Blue: {this.b}";
   }
 }
