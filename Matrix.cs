@@ -38,17 +38,64 @@ public class Matrix
   public static Matrix operator *(Matrix a, Matrix b)
   {
     int size = a.GetSize();
-    Matrix mat = new(size);
 
-    for (int r = 0; r < size; r++)
+    if (size == 4)
     {
-      for (int c = 0; c < size; c++)
+      return Multiply4x4(a, b);
+    }
+    if (size == 3)
+    {
+      return Multiply3x3(a, b);
+    }
+    else
+    {
+      return Multiply2x2(a, b);
+    }
+  }
+
+  private static Matrix Multiply4x4(Matrix a, Matrix b)
+  {
+    Matrix mat = new(4);
+    for (int r = 0; r < 4; r++)
+    {
+      for (int c = 0; c < 4; c++)
       {
         mat[r, c] =
           a[r, 0] * b[0, c]
           + a[r, 1] * b[1, c]
           + a[r, 2] * b[2, c]
           + a[r, 3] * b[3, c];
+      }
+    }
+
+    return mat;
+  }
+
+  private static Matrix Multiply3x3(Matrix a, Matrix b)
+  {
+    Matrix mat = new(3);
+    for (int r = 0; r < 3; r++)
+    {
+      for (int c = 0; c < 3; c++)
+      {
+        mat[r, c] =
+          a[r, 0] * b[0, c]
+          + a[r, 1] * b[1, c]
+          + a[r, 2] * b[2, c];
+      }
+    }
+
+    return mat;
+  }
+
+  private static Matrix Multiply2x2(Matrix a, Matrix b)
+  {
+    Matrix mat = new(2);
+    for (int r = 0; r < 2; r++)
+    {
+      for (int c = 0; c < 2; c++)
+      {
+        mat[r, c] = a[r, 0] * b[0, c] + a[r, 1] * b[1, c];
       }
     }
 
