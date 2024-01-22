@@ -124,29 +124,29 @@ public class VectorFacts
     }
 
     [Theory]
-    [InlineData(
-        1, -1, 0,
-        0, 1, 0,
-        1, 1, 0
-        )]
-    [InlineData(
-        0, -1, 0,
-        1.4142f, 1.4142f, 0,
-        1, 0, 0
-        )]
+    [InlineData(1, -1, 0, 0, 1, 0, 1, 1, 0)]
+    [InlineData(0, -1, 0, 1.4142 / 2, 1.4142 / 2, 0, 1, 0, 0)]
     public void ValidateReflectVector(
-        float inX, float inY, float inZ,
-        float nX, float nY, float nZ,
-        float expectedX, float expectedY, float expectedZ
-        )
+      double inX,
+      double inY,
+      double inZ,
+      double nX,
+      double nY,
+      double nZ,
+      double expectedX,
+      double expectedY,
+      double expectedZ
+    )
     {
       Vector incoming = new(inX, inY, inZ);
       Vector normal = new(nX, nY, nZ);
-      Vector expectedVector = new(
-          expectedX, expectedY, expectedZ);
+      Vector expectedVector =
+        new(expectedX, expectedY, expectedZ);
 
-      Vector actualReflectedVector = new Vector()
-        .Reflect(incoming, normal);
+      Vector actualReflectedVector = Vector.Reflect(
+        incoming,
+        normal
+      );
 
       Assert.Equal(expectedVector, actualReflectedVector);
     }
