@@ -88,6 +88,24 @@
     return first;
   }
 
+  public bool IsShadowed(Point point, Light light)
+  {
+    Vector v = light.position - point;
+    double distance = v.Magnitude();
+    Vector direction = v.Normalize();
+    Ray ray = new(point, direction);
+
+    List<Intersection> intersections = Intersections(ray);
+    Intersection hit = Hit(intersections);
+
+    if (hit != null && hit.t < distance)
+    {
+      return true;
+    }
+
+    return false;
+  }
+
   public Color ShadeHit(Computations c)
   {
     return c.intersectableObj.Lighting(
