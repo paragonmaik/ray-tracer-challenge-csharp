@@ -80,5 +80,64 @@ public class SceneFacts
         ray.Direction()
       );
     }
+
+    [Fact]
+    public void ValidateSurfaceInShadow()
+    {
+      Scene scene = new Scene();
+      Vector eye = new Vector(0, 0, -1);
+      Vector normal = new Vector(0, 0, -1);
+      Light light = new Light(
+        new Point(0, 0, -10),
+        new Color(1, 1, 1)
+      );
+
+      bool inShadow = true;
+
+      Sphere sphere = new Sphere();
+
+      Color expectedColor = sphere.Lighting(
+        sphere.GetPosition(),
+        light,
+        eye,
+        normal,
+        inShadow
+      );
+
+      Assert.Equal(new Color(0.1f, 0.1f, 0.1f), expectedColor);
+    }
+
+    [Fact]
+    public void ValidateNothingIsCollinear()
+    {
+      Scene.current.Default();
+
+      List<Light> lights = Scene.current.GetLights();
+
+      Point point = new Point(0, 10, 0);
+      Assert.False(Scene.current.IsShadowed(point, lights[0]));
+    }
+
+    [Fact]
+    public void ValidateObjectBetweenPointAndLight()
+    {
+      Scene.current.Default();
+
+      List<Light> lights = Scene.current.GetLights();
+
+      Point point = new Point(10, -10, 10);
+      Assert.True(Scene.current.IsShadowed(point, lights[0]));
+    }
+
+    [Fact]
+    public void ValidateObjectBehindLight()
+    {
+      Scene.current.Default();
+
+      List<Light> lights = Scene.current.GetLights();
+
+      Point point = new Point(-20, 20, -20);
+      Assert.False(Scene.current.IsShadowed(point, lights[0]));
+    }
   }
 }
