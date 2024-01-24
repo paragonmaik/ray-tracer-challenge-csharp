@@ -4,6 +4,7 @@
   public double t;
   public IntersectableObject intersectableObj;
   public Point point;
+  public Point overPoint;
   public Vector eye;
   public Vector normal;
 
@@ -20,6 +21,7 @@
     this.point = point;
     this.eye = eye;
     this.normal = normal;
+    this.overPoint = new();
   }
 
   public static Computations Prepare(
@@ -47,6 +49,8 @@
     {
       c.inside = false;
     }
+
+    c.overPoint = c.point + (c.normal * Utility.epsilon);
 
     return c;
   }

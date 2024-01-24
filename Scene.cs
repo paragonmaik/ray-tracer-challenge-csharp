@@ -108,11 +108,14 @@
 
   public Color ShadeHit(Computations c)
   {
+    bool shadowed = IsShadowed(c.overPoint, this.lights[0]);
+
     return c.intersectableObj.Lighting(
-      c.point,
+      c.overPoint,
       this.lights[0],
       c.eye,
-      c.normal
+      c.normal,
+      shadowed
     );
   }
 
