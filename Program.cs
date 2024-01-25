@@ -75,13 +75,6 @@ class Program
     );
 
     Canvas canvas = Scene.current.Render(camera);
-    canvas.Save("file");
-
-    Console.WriteLine(
-      new Matrix(4).Translate(0, 0, 5)
-        * new Matrix(4).RotateYAxis(Math.PI / -4.0)
-        * new Matrix(4).RotateXAxis(Math.PI / 2.0)
-        * new Matrix(4).Scale(10, 0.01f, 10)
-    );
+    canvas.Save("RayTracedFile");
   }
 }
